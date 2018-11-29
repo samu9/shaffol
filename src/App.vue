@@ -1,16 +1,18 @@
 <template>
   <div id="main">
     <h1>Shaffol</h1>
-    <MainPanel/>
+    <NoteMatrix/>
   </div>
 </template>
 
 
 <script>
 import MainPanel from "./components/MainPanel/MainPanel.vue";
+import NoteMatrix from "./components/NoteMatrix/NoteMatrix.vue"
 export default {
   components: {
-    MainPanel
+    MainPanel,
+    NoteMatrix
   }
 };
 </script>
