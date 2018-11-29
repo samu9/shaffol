@@ -1,9 +1,6 @@
 body{
     margin: 0px;
     padding: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100vw;
     height: 100vh;
     background-color: #0f0830;
