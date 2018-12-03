@@ -21,20 +21,20 @@
 
 <script>
 import Tone from "tone";
-import InstrumentService from '../../services/InstrumentService'
+import InstrumentService from "../../services/InstrumentService";
 
 export default {
   props: {
+    name: String,
     noteGrid: Object,
     gridDim: Number,
     noteService: Object,
     octave: Number,
-    settings: Object
+    voice: Object
   },
   data() {
     return {
-      // synth: new Tone.PolySynth(4,Tone.Synth).toMaster(),
-      instrument: new InstrumentService(this.settings.oscillator),
+      // voice: new InstrumentService(this.voice.oscillator),
       timeIndex: 0,
       noteLength: this.gridDim / 2 + "n", // es. per una griglia 16x16 suona 8n = ottavi
       open: true
@@ -45,21 +45,20 @@ export default {
       this.noteGrid[time][note] = !this.noteGrid[time][note];
     },
     repeat: function(time) {
-      if(this.noteService.transport.status == 'stopped'){
-        this.timeIndex = 0;
-        return;
-      }
       this.timeIndex = Math.floor(
         this.noteService.timeIndex / (16 / this.gridDim)
       );
+      let note;
       for (let n in this.noteGrid[this.timeIndex]) {
         if (
-          !this.instrument.muted &&
+          !this.voice.muted &&
+          (this.noteService.solo == null ||
+            this.noteService.solo == this.name) &&
           this.noteGrid[this.timeIndex][n] &&
           this.noteService.timeIndex % Math.floor(16 / this.gridDim) == 0
         ) {
-          let note = this.noteService.getNote(n, this.octave);
-          this.instrument.synth.triggerAttackRelease(note, this.noteLength, time);
+          note = this.noteService.getNote(n, this.octave);
+          this.voice.synth.triggerAttackRelease(note, this.noteLength, time);
         }
       }
     }

@@ -13,6 +13,7 @@ export default class NoteService {
     time = 0;
     timeIndex = -1;
     transport = Tone.Transport;
+    solo = null;
 
     constructor(tonic, scale, bpm) {
         this.tonic = tonic;

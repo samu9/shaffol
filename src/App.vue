@@ -1,12 +1,6 @@
 <template>
   <div id="main">
     <h1>Shaffol</h1>
-    <!-- <div class="main-element">
-      <p>{{noteService.scale}}</p>
-      <p>{{noteService.tonic}}</p>
-      <button class="btn btn-success" v-on:click="noteService.changeTonic()">Change Tonic</button>
-      <button class="btn btn-warning" v-on:click="noteService.changeScale()">Change Scale</button>
-    </div>-->
     <div class="main-element">
       <NoteMatrix
         v-for="(inst, i) in instruments"
@@ -15,8 +9,34 @@
         :gridDim="inst.gridDim"
         :noteService="noteService"
         :octave="inst.octave"
-        :settings="inst.voice"
+        :voice="inst.voice"
+        :name="i"
       />
+    </div>
+
+    <div class="temporary-controls">
+      <button
+        class="btn btn-default"
+        v-for="(instM,m) in instruments"
+        v-bind:class="{disabled: instM.voice.muted}"
+        :key="m"
+        v-on:click="instM.voice.muted=!instM.voice.muted"
+      >{{ 'Mute ' + m }}</button>
+      <button
+        class="btn btn-default"
+        v-for="(instS,s) in instruments"
+        v-bind:class="{disabled: noteService.solo == s}"
+        :key="s"
+        v-on:click="solo(s)"
+      >{{ 'Solo ' + s }}</button>
+      <button
+        class="btn btn-default"
+        v-on:click="noteService.changeTonic()"
+      >Change Tonic: {{ this.noteService.tonic }}</button>
+      <button
+        class="btn btn-default"
+        v-on:click="noteService.changeScale()"
+      >Change Scale: {{ this.noteService.scale }}</button>
     </div>
   </div>
 </template>
@@ -28,6 +48,7 @@ import MainPanel from "./components/MainPanel/MainPanel.vue";
 import NoteMatrix from "./components/NoteMatrix/NoteMatrix.vue";
 import NoteService from "./services/NoteService.js";
 import { noteService } from "./main.js";
+import InstrumentService from "./services/InstrumentService";
 export default {
   data() {
     return {
@@ -36,17 +57,13 @@ export default {
           noteGrid: {},
           gridDim: 16,
           octave: 4,
-          voice: {
-            oscillator: "sawtooth"
-          }
+          voice: new InstrumentService("sawtooth")
         },
         bass: {
           noteGrid: {},
           gridDim: 4,
           octave: 2,
-          voice: {
-            oscillator: "triangle"
-          }
+          voice: new InstrumentService("triangle")
         }
       },
       noteService: noteService
@@ -77,6 +94,14 @@ export default {
         }
         Vue.set(grid, t, obj);
       }
+    },
+    solo(s) {
+      if(this.noteService.solo == s){
+        this.noteService.solo = null;
+      } else{
+        this.noteService.solo = s;
+      }
+      console.log(this.noteService.solo);
     }
   }
 };
@@ -113,5 +138,13 @@ export default {
 .main-element {
   display: flex;
   flex-direction: row;
+}
+.temporary-controls {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+}
+.temporary-controls .btn {
+  margin: 0px 5px;
 }
 </style>
