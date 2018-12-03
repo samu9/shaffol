@@ -9,19 +9,40 @@ import './main.css'
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlay, faStop, faRandom } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faStop, faRandom, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import NoteService from './services/NoteService';
 
-library.add(faPlay,faStop,faRandom)
+library.add(faPlay, faStop, faRandom, faTimesCircle)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+
+
+var noteService = new NoteService("A", "minor", 150);
+
+
 new Vue({
   el: '#app',
   template: '<App/>',
   components: { App }
 })
+
+// key bindings
+window.addEventListener('keydown', function (e) {
+  if (e.keyCode == 32) {
+    e.preventDefault();
+    noteService.toggleStartPause();
+  }
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    noteService.stop();
+  }
+})
+
+
+
+export { noteService }

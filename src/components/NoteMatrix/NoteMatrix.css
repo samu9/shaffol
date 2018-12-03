@@ -1,6 +1,7 @@
 .note-matrix {
     width: 50%;
     max-width: 640px;
+    max-height: 640px;
     margin: 0px auto;
     display: flex;
     font-family: monospace;
@@ -17,7 +18,8 @@
   }
   .note-slot {
     width: 100%;
-    padding-bottom: 100%;
+    /* padding-bottom: 100%; */
+    height: 100vh;
     margin: 2px;
     border: 2px solid #ffffff1d;
     background-color: #ffffff3d;
@@ -32,5 +34,17 @@
     background-color: #ffffff4d;
   }
   .time-slot.active .note-slot.active{
-    background-color: #ffffff9d; 
+    background-color: #ffffff; 
+  }
+
+  .close-button{
+    position: relative;
+    color: #aaaaaa;
+    font-size: 2em;
+    left: 0.1em;
+    top: -0.7em;
+    cursor: pointer;
+  }
+  .close-button:hover{
+    color: #ffffff;
   }
