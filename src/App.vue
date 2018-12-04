@@ -22,7 +22,9 @@ export default {
 }
 #main > h1 {
   text-align: center;
-  font-size: 60px;
+  font-size: 95px;
+  margin-bottom:0;
   color: #ffffff5d;
+  text-shadow: -1px 0 20px royalblue, 0 1px royalblue, 1px 0 royalblue, 0 -1px royalblue;
 }
 </style>

@@ -1,6 +1,73 @@
 .instrument-tab{
+    display:flex;
     width: 100%;
-    padding: 20px;
-    border: 1px solid #ffffff2d;
-    margin: 20px auto;
+    border: 2px solid royalblue;
+    margin: 10px auto;
+    flex-wrap: wrap;
 }
+
+.circle-container{
+    border-right: 2px solid royalblue;
+    padding: 20px;
+    width: min-content;
+}
+.circle {
+    border-radius: 100px;
+    border: 3px solid royalblue;
+    height: 100px;
+    width: 100px;
+    display: table;
+
+}
+.circle h1 {
+    color: royalblue;
+    font-size:1.5em;
+    vertical-align: middle;
+    text-align:center; 
+    display: table-cell;
+}
+.dd-list{
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    font-family: Arial;
+}
+
+select{
+    padding:10px;
+    background-color: inherit;
+    border: 2px solid royalblue;
+    color: royalblue;
+}
+
+.dd-container{
+   display:flex;
+   align-items:center;
+   margin-left: 30px;
+}
+
+.btn-container{
+    display:flex;
+    flex-direction: column;
+}
+
+.btn-opt{
+    border-radius: 55px;
+    height: 55px;
+    width: 55px;
+}
+
+.btn-opt h1{
+    margin-bottom:0;
+    font-size:0.8em;
+}
+#mute{
+    margin:10px 30px 5px 30px;
+    border:3px solid yellow;   
+}
+
+#solo{
+    margin:5px 30px 10px 30px;
+    border: 3px solid red;
+}
+
