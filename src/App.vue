@@ -57,7 +57,7 @@ export default {
           noteGrid: {},
           gridDim: 16,
           octave: 4,
-          voice: new InstrumentService("sawtooth")
+          voice: new InstrumentService("triangle")
         },
         bass: {
           noteGrid: {},

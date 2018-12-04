@@ -34,7 +34,6 @@ export default {
   },
   data() {
     return {
-      // voice: new InstrumentService(this.voice.oscillator),
       timeIndex: 0,
       noteLength: this.gridDim / 2 + "n", // es. per una griglia 16x16 suona 8n = ottavi
       open: true
