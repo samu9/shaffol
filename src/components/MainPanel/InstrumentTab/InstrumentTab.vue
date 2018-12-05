@@ -28,6 +28,9 @@
         <h1>{{solo}}</h1>
       </button>
     </div>
+    <div class="shuffle-controls">
+      <button v-on:click="shuffleSong"><font-awesome-icon icon="random" /></button>
+    </div>
   </div>
 </template>
 
@@ -84,6 +87,10 @@ export default {
         this.soloColor = "rgb(207, 124, 124)";
       }
       console.log(this.solo);
+    },
+
+    shuffleSong: function(){
+      console.log("shuffle song")
     }
   }
 };

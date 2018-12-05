@@ -71,3 +71,19 @@ select{
     border: 3px solid red;
 }
 
+.shuffle-controls{
+    display:flex;
+    align-items: center;
+}
+
+.shuffle-controls button{
+    height: 60px;
+    width:80px;
+    font-size:30px;
+    background: inherit;
+    color: royalblue;
+    border:2px solid royalblue;
+}
+.shuffle-controls button:active{
+    background: #ffffff2d;
+}
