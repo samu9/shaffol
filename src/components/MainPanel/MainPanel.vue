@@ -6,9 +6,9 @@
         :name=inst
     />
     <div class="controls">
-      <button v-if="playable" v-on:click="startSong"><font-awesome-icon icon="play" /></button>
-      <button v-else v-on:click="pauseSong"><font-awesome-icon icon="pause" /></button>
-      <button v-on:click="stopSong"><font-awesome-icon icon="stop" /></button>
+      <button v-if="playable" v-on:click="startSong" onclick="this.blur()"><font-awesome-icon icon="play" /></button>
+      <button v-else v-on:click="pauseSong" onclick="this.blur()"><font-awesome-icon icon="pause" /></button>
+      <button v-on:click="stopSong" onclick="this.blur()"><font-awesome-icon icon="stop" /></button>
     </div>
   </div>
 </template>

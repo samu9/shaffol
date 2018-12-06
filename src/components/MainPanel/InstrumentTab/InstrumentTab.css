@@ -26,10 +26,17 @@
     text-align:center; 
     display: table-cell;
 }
-.dd-list{
+.sound{
     display: flex;
     align-items: center;
-    margin-left: 30px;
+    margin-left: 5px;
+    font-family: Arial;
+}
+
+.effect{
+    display: flex;
+    align-items: center;
+    margin: auto 30px;
     font-family: Arial;
 }
 
@@ -40,43 +47,60 @@ select{
     color: royalblue;
 }
 
-.dd-container{
-   display:flex;
-   align-items:center;
-   margin-left: 30px;
-}
-
 .btn-container{
     display:flex;
     flex-direction: column;
 }
 
-.btn-opt{
+.btn-container button{
     border-radius: 55px;
     height: 55px;
     width: 55px;
+    box-shadow: 0 6px cornflowerblue;
 }
 
-.btn-opt h1{
+.btn-container h1{
     margin-bottom:0;
     font-size:0.8em;
 }
 #mute{
-    margin:10px 30px 5px 30px;
+    background: rgba(245, 245, 127, 0.596);
+    margin:4px 30px 5px 30px;
     border:3px solid yellow;   
 }
 
+#mute.active{
+    background-color:yellow;
+    box-shadow: 0 2px royalblue;
+    transform: translateY(4px);
+}
+
+#mute:focus{
+    outline:0;
+}
+
 #solo{
-    margin:5px 30px 10px 30px;
+    background: rgb(207, 124, 124);
+    margin:6px 30px 10px 30px;
     border: 3px solid red;
 }
 
-.shuffle-controls{
+#solo.active{
+    background-color:red;
+    box-shadow: 0 2px royalblue;
+    transform: translateY(4px);
+}
+
+#solo:focus{
+    outline:0;
+}
+
+.shuffle{
     display:flex;
     align-items: center;
 }
 
-.shuffle-controls button{
+.shuffle button{
     height: 60px;
     width:80px;
     font-size:30px;
@@ -84,6 +108,24 @@ select{
     color: royalblue;
     border:2px solid royalblue;
 }
-.shuffle-controls button:active{
+.shuffle button:active{
+    background: #ffffff2d;
+}
+
+.clear{
+    display:flex;
+    align-items: center;
+    margin-left:30px;
+}
+.clear button{
+    height: 40px;
+    width:40px;
+    font-size:20px;
+    background: inherit;
+    color: royalblue;
+    border:2px solid royalblue;
+}
+
+.clear button:active{
     background: #ffffff2d;
 }

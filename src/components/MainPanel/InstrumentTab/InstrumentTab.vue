@@ -5,31 +5,33 @@
         <h1>{{name | capitalize}}</h1>
       </div>
     </div>
-    <div class="dd-list">
+    <div class="btn-container">
+      <button v-bind:class="{active: mute}" v-on:click="muteSong" onclick="this.blur()" id="mute">
+        <h1>MUTE</h1>
+      </button>
+      <button v-bind:class="{active: solo}" v-on:click="soloSong" onclick="this.blur()" id="solo">
+        <h1>SOLO</h1>
+      </button>
+    </div>
+    <div class="sound">
       <select v-model="selected">
         <option v-for="inst in musicStyle" v-bind:key="inst.value">{{ inst.value }}</option>
       </select>
     </div>
-    <div class="btn-container">
-      <button
-        v-bind:style="{background : muteColor}"
-        v-on:click="muteSong"
-        id="mute"
-        class="btn-opt"
-      >
-        <h1>{{mute}}</h1>
-      </button>
-      <button
-        v-bind:style="{background : soloColor}"
-        v-on:click="soloSong"
-        id="solo"
-        class="btn-opt"
-      >
-        <h1>{{solo}}</h1>
+    <div class="effect">
+      <select v-model="selected2">
+        <option v-for="inst in effects" v-bind:key="inst.value">{{ inst.value }}</option>
+      </select>
+    </div>
+    <div class="shuffle">
+      <button v-on:click="shuffleSong" onclick="this.blur()">
+        <font-awesome-icon icon="random"/>
       </button>
     </div>
-    <div class="shuffle-controls">
-      <button v-on:click="shuffleSong"><font-awesome-icon icon="random" /></button>
+    <div class="clear">
+      <button v-on:click="clearInstrument" onclick="this.blur()">
+        <font-awesome-icon icon="trash-alt"/>
+      </button>
     </div>
   </div>
 </template>
@@ -52,11 +54,15 @@ export default {
   data() {
     return {
       musicStyle: [{ value: "Jazz" }, { value: "Rock" }, { value: "Pop" }],
-      mute: "MUTE",
-      solo: "SOLO",
-      muteColor: "rgba(245, 245, 127, 0.596)",
-      soloColor: "rgb(207, 124, 124)",
-      selected: "Jazz"
+      effects: [
+        { value: "Triangle" },
+        { value: "Distortion" },
+        { value: "Delay" }
+      ],
+      mute: false,
+      solo: false,
+      selected: "Jazz",
+      selected2: "Triangle"
     };
   },
   methods: {
@@ -69,28 +75,26 @@ export default {
       return patt.join(" , ");
     },
     muteSong: function() {
-      if (this.mute == "MUTE") {
-        this.mute = "NO MUTE";
-        this.muteColor = "yellow";
+      if (this.mute == false) {
+        this.mute = true;
       } else {
-        (this.mute = "MUTE"), (this.muteColor = "rgba(245, 245, 127, 0.596)");
+        this.mute = false;
       }
-      console.log(this.mute);
+      console.log("mute: " + this.mute);
     },
-
     soloSong: function() {
-      if (this.solo == "SOLO") {
-        this.solo = "NO SOLO";
-        this.soloColor = "red";
+      if (this.solo == false) {
+        this.solo = true;
       } else {
-        this.solo = "SOLO";
-        this.soloColor = "rgb(207, 124, 124)";
+        this.solo = false;
       }
-      console.log(this.solo);
+      console.log("solo: " + this.solo);
     },
-
-    shuffleSong: function(){
-      console.log("shuffle song")
+    shuffleSong: function() {
+      console.log("shuffle song");
+    },
+    clearInstrument: function() {
+      console.log("clear inst");
     }
   }
 };

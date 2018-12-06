@@ -27,6 +27,9 @@
 .main-panel .controls button:active{
     background: #ffffff2d;
 }
+.main-panel .controls button:focus{
+    outline: 0;
+}
 
 .main-panel .controls > h3{
     margin: 0px;
