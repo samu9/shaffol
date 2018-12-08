@@ -49,6 +49,7 @@ import NoteMatrix from "./components/NoteMatrix/NoteMatrix.vue";
 import NoteService from "./services/NoteService.js";
 import { noteService } from "./main.js";
 import InstrumentService from "./services/InstrumentService";
+import DrumsService from "./services/DrumsService";
 export default {
   data() {
     return {
@@ -66,7 +67,8 @@ export default {
           voice: new InstrumentService("triangle")
         }
       },
-      noteService: noteService
+      noteService: noteService,
+      // drums: new DrumsService(noteService)
     };
   },
   components: {

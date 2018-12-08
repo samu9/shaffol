@@ -1,4 +1,5 @@
 import Tone from 'tone'
+import DrumsService from './DrumsService';
 
 export default class NoteService {
     notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -28,6 +29,7 @@ export default class NoteService {
     }
     repeat(time) {
         this.timeIndex = (this.timeIndex + 1) % 16;
+
     }
 
     changeTonic() {

@@ -12,6 +12,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlay, faStop, faRandom, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import NoteService from './services/NoteService';
+import DrumsService from './services/DrumsService';
 
 library.add(faPlay, faStop, faRandom, faTimesCircle)
 
@@ -20,10 +21,9 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
-
-
 var noteService = new NoteService("A", "minor", 150);
 
+var drums = new DrumsService(noteService);
 
 new Vue({
   el: '#app',

@@ -43,7 +43,7 @@ export default {
     toggleNote: function(time, note) {
       this.noteGrid[time][note] = !this.noteGrid[time][note];
     },
-    repeat: function(time) {
+    repeat: function(time) { //dovrebbe andare nell InstrumentService
       this.timeIndex = Math.floor(
         this.noteService.timeIndex / (16 / this.gridDim)
       );
