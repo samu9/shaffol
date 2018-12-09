@@ -1,12 +1,12 @@
 <template>
-  <div class="instrument-tab">
+  <div  class="instrument-tab">
     <div class="circle-container">
       <div class="circle">
         <h1>{{name | capitalize}}</h1>
       </div>
     </div>
     <div class="btn-container">
-      <button v-bind:class="{active: mute}" v-on:click="muteSong" onclick="this.blur()" id="mute">
+      <button v-bind:class="{active: mute}"  v-on:click="muteSong" onclick="this.blur()" id="mute">
         <h1>MUTE</h1>
       </button>
       <button v-bind:class="{active: solo}" v-on:click="soloSong" onclick="this.blur()" id="solo">

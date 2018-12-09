@@ -1,10 +1,10 @@
 .main-panel{
     position: relative;
     display: flex;
-    margin: 0px auto;
+    margin: 0 auto;
     width: 50%;
     background-color: #ffffff2d;
-    padding: 10px 30px 20px 30px;
+    padding: 0.6vw 1.8vw 1.2vw 1.8vw;
     color: white;
     flex-direction: column;
 }
@@ -34,4 +34,14 @@
 .main-panel .controls > h3{
     margin: 0px;
     padding: 0px;
+}
+
+.instMute{
+    display:flex;
+    width: 100%;
+    border: 0.15vw solid royalblue;
+    margin: 2% auto;
+    flex-wrap: nowrap;
+    height:9.9vw;
+    -webkit-filter: grayscale(100%);
 }
