@@ -1,7 +1,7 @@
 import Tone from 'tone'
 import DrumsService from './DrumsService';
 
-export default class NoteService {
+export default class MusicService {
     notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
     scales = {
         "minor": [0, 2, 3, 5, 7, 8, 10],
@@ -29,7 +29,6 @@ export default class NoteService {
     }
     repeat(time) {
         this.timeIndex = (this.timeIndex + 1) % 16;
-
     }
 
     changeTonic() {

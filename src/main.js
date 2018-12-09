@@ -11,7 +11,7 @@ import './main.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlay, faStop, faRandom, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import NoteService from './services/NoteService';
+import MusicService from './services/MusicService';
 import DrumsService from './services/DrumsService';
 
 library.add(faPlay, faStop, faRandom, faTimesCircle)
@@ -21,9 +21,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
-var noteService = new NoteService("A", "minor", 150);
-
-var drums = new DrumsService(noteService);
+var musicService = new MusicService("A", "pentatonicMajor", 120);
 
 new Vue({
   el: '#app',
@@ -35,14 +33,14 @@ new Vue({
 window.addEventListener('keydown', function (e) {
   if (e.keyCode == 32) {
     e.preventDefault();
-    noteService.toggleStartPause();
+    musicService.toggleStartPause();
   }
   if (e.keyCode == 13) {
     e.preventDefault();
-    noteService.stop();
+    musicService.stop();
   }
 })
 
 
 
-export { noteService }
+export { musicService }
