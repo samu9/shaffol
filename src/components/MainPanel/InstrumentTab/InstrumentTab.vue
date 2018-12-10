@@ -1,8 +1,8 @@
 <template>
-  <div  class="instrument-tab">
+  <div class="instrument-tab">
     <div class="circle-container">
       <div class="circle">
-        <h1>{{name | capitalize}}</h1>
+        <h1>{{name}}</h1>
       </div>
     </div>
     <div class="btn-container">
@@ -14,11 +14,13 @@
       </button>
     </div>
     <div class="sound">
+      <h1>SOUND</h1>
       <select v-model="selected">
         <option v-for="inst in musicStyle" v-bind:key="inst.value">{{ inst.value }}</option>
       </select>
     </div>
     <div class="effect">
+      <h1>EFFECT</h1>
       <select v-model="selected2">
         <option v-for="inst in effects" v-bind:key="inst.value">{{ inst.value }}</option>
       </select>

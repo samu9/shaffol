@@ -23,7 +23,7 @@ import "./MainPanel.css";
 export default {
   data() {
     return {
-      instruments: ["lead", "bass", "drums"],
+      instruments: ["LEAD", "BASS", "DRUMS"],
       playable: true
     };
   },

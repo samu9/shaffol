@@ -2,15 +2,13 @@
     display:flex;
     width: 100%;
     border: 0.15vw solid royalblue;
-    margin: 2% auto;
+    margin: 1% auto;
     flex-wrap: nowrap;
     height:9.9vw;
 }
 
-
 .circle-container{
     border-right: 0.15vw solid royalblue;
-    padding: 3%;
     width: 20.204%;
     height:100%;
 }
@@ -28,6 +26,7 @@
     vertical-align: middle;
     text-align:center; 
     display: table-cell;
+    font-family:cursive;
 }
 
 .btn-container{
@@ -41,22 +40,24 @@
     border-radius: 100%;
     height: 4vw;
     width: 4vw;
-    box-shadow: 0 0.4vw cornflowerblue;
+    
 }
 
 .btn-container h1{
     margin-bottom:0;
     font-size:0.9vw;
+    font-family: cursive;
 }
 #mute{
     background: rgba(245, 245, 127, 0.596);
     margin:0.4vw auto 0.1vw auto;
-    border:0.15vw solid yellow;   
+    border:0.15vw solid yellow; 
+    box-shadow: 0 0.4vw rgba(245, 245, 127, 0.596);  
 }
 
 #mute.active{
     background-color:yellow;
-    box-shadow: 0 0.15vw royalblue;
+    box-shadow: 0 0.15vw rgba(245, 245, 127, 0.596);
     transform: translateY(0.2vw);
 }
 
@@ -68,11 +69,12 @@
     background: rgb(207, 124, 124);
     margin:0.5vw auto 0.5vw auto;
     border: 0.15vw solid red;
+    box-shadow: 0 0.4vw rgb(207, 124, 124);  
 }
 
 #solo.active{
     background-color:red;
-    box-shadow: 0 0.15vw royalblue;
+    box-shadow: 0 0.15vw rgb(207, 124, 124);  ;
     transform: translateY(0.2vw);
 }
 
@@ -82,15 +84,34 @@
 
 .sound{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    font-family: Arial;
+    font-family: cursive;
+}
+
+.sound h1{
+    font-size: larger;
+    color: #ffffff5d;
+    text-shadow: -0.1vw 0 1vw royalblue, 0 0.1vw royalblue, 0 0 royalblue, 0 0 royalblue;
+    margin-top: 1.4vw;
+    margin-bottom: 0.5vw;
 }
 
 .effect{
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-left: 6%;
-    font-family: Arial;
+    font-family: cursive;
+}
+
+
+.effect h1{
+    font-size: larger;
+    color: #ffffff5d;
+    text-shadow: -0.1vw 0 1vw royalblue, 0 0.1vw royalblue, 0 0 royalblue, 0 0 royalblue;
+    margin-top: 1.4vw;
+    margin-bottom: 0.5vw;
 }
 
 .sound select{
@@ -115,17 +136,23 @@ select option{
 
 .shuffle{
     display:flex;
-    align-items: center;
     margin-left:6%;
 }
 
 .shuffle button{
-    height: 4vw;
+    display:flex;
+    height: 3.21vw;
     width: 5vw;
     font-size: 2vw;
     background: inherit;
     color: royalblue;
     border:0.15vw solid royalblue;
+    margin-top:3.35vw;
+}
+
+.shuffle button svg{
+    margin:auto;
+
 }
 .shuffle button:active{
     background: #ffffff2d;
@@ -140,8 +167,8 @@ select option{
 }
 .clear button{
     height: 3vw;
-    width: 2vw;
-    font-size: 1vw;
+    width: 3vw;
+    font-size: 1.5vw;
     background: inherit;
     color: red;
     border:0;
