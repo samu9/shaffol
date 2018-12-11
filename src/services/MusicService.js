@@ -32,17 +32,18 @@ export default class MusicService {
         this.timeIndex = (this.timeIndex + 1) % this.measure;
     }
 
-    changeTonic() {
-        let randIndex = Math.floor(Math.random() * this.notes.length);
-        this.tonicIndex = randIndex;
-        this.tonic = this.notes[this.tonicIndex];
+    changeTonic(newTonic) {
+        // let randIndex = Math.floor(Math.random() * this.notes.length);
+        // this.tonicIndex = randIndex;
+        // this.tonic = this.notes[this.tonicIndex];
+        this.tonic = newTonic;
     }
-    changeScale() {
-        let keys = Object.keys(this.scales);
-        let newScale = this.scale;
-        while (newScale == this.scale) {
-            newScale = keys[Math.floor(Math.random() * keys.length)];
-        }
+    changeScale(newScale) {
+        // let keys = Object.keys(this.scales);
+        // let newScale = this.scale;
+        // while (newScale == this.scale) {
+        //     newScale = keys[Math.floor(Math.random() * keys.length)];
+        // }
         this.scale = newScale;
     }
     getNote(index, octave) {

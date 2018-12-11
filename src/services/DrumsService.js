@@ -32,11 +32,12 @@ export default class DrumsService {
         ["C3","D3"],
         ["C3","D3"],
         "D3",
-    ]
+    ];
     muted = false;
     timeIndex = 0;
 
-    constructor(musicService) {
+    constructor(name, musicService) {
+        this.name = name;
         this.musicService = musicService;
         this.musicService.transport.scheduleRepeat(time => {
             this.repeat(time);
@@ -45,6 +46,7 @@ export default class DrumsService {
 
     repeat() {
         this.timeIndex = this.musicService.timeIndex % 16;
+        if(this.muted || (this.musicService.solo != this.name && this.musicService.solo != null))  return;
         if(typeof(this.pattern[this.timeIndex]) != 'object'){
             this.sampler.triggerAttack(this.pattern[this.timeIndex]);
         }
@@ -53,6 +55,13 @@ export default class DrumsService {
                 this.sampler.triggerAttack(this.pattern[this.timeIndex][n]);
             }
         }
+    }
 
+    solo() {
+        if (this.musicService.solo == this.name) {
+            this.musicService.solo = null;
+        } else {
+            this.musicService.solo = this.name;
+        }
     }
 }

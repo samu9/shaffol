@@ -34,7 +34,7 @@ export default class InstrumentService {
             this.repeat(time);
         }, "8n");
     }
-   
+
     repeat(time) {
         // updating timeIndex
         this.timeIndex = Math.floor(this.musicService.timeIndex / this.measureSize);
@@ -45,20 +45,28 @@ export default class InstrumentService {
             this.musicService.timeIndex % this.measureSize == 0
         ) {
             this.synth.triggerAttackRelease(
-                this.musicService.getNote(this.pattern[this.timeIndex],this.octave), this.noteLength, time
-            ); 
+                this.musicService.getNote(this.pattern[this.timeIndex], this.octave), this.noteLength, time
+            );
         }
     }
 
-    shufflePattern(){
-        for(let t in this.pattern){
-            if(Math.random() > 0.2){
+    shufflePattern() {
+        for (let t in this.pattern) {
+            if (Math.random() > 0.2) {
                 let newNote = Math.floor(Math.random() * this.gridDim);
                 this.pattern[t] = [newNote];
             } else {
                 this.pattern[t] = [];
             }
         }
-        this.EventBus.$emit('shuffled',this.pattern);
+        this.EventBus.$emit('shuffled', this.pattern);
+    }
+    
+    solo() {
+        if (this.musicService.solo == this.name) {
+            this.musicService.solo = null;
+        } else {
+            this.musicService.solo = this.name;
+        }
     }
 }

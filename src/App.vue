@@ -1,9 +1,10 @@
 <template>
   <div id="main">
     <h1>Shaffol</h1>
-    <div class="main-element">
+    <MainPanel/>
+    <!-- <div class="main-element">
       <NoteMatrix v-for="(inst, i) in instruments" :key="i" :instrument="inst"/>
-    </div>
+    </div> -->
 
     <!-- <div class="temporary-controls">
       <button
@@ -44,12 +45,12 @@ import DrumsService from "./services/DrumsService";
 export default {
   data() {
     return {
-      instruments: {
-        lead: new InstrumentService("lead", musicService, 16, 4, "triangle"),
-        bass: new InstrumentService("bass", musicService, 4, 2, "triangle")
-      },
-      drums: new DrumsService(musicService),
-      musicService: musicService
+      // instruments: {
+      //   lead: new InstrumentService("lead", musicService, 16, 4, "triangle"),
+      //   bass: new InstrumentService("bass", musicService, 4, 2, "triangle")
+      // },
+      // drums: new DrumsService(musicService),
+      // musicService: musicService
     };
   },
   components: {
@@ -58,13 +59,7 @@ export default {
   },
   created: function() {},
   methods: {
-    solo(s) {
-      if (this.musicService.solo == s) {
-        this.musicService.solo = null;
-      } else {
-        this.musicService.solo = s;
-      }
-    }
+
   }
 };
 </script>

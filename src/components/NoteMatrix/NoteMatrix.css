@@ -1,5 +1,6 @@
 .note-matrix {
-    width: 50%;
+    /* width: 50%; */
+    height: 100%;
     max-width: 640px;
     max-height: 640px;
     margin: 0px auto;
@@ -9,7 +10,8 @@
     border-collapse: collapse;
   }
   .time-slot {
-    margin: 2px;
+    /* margin: 2px; */
+    margin: 0.05em;
     width: 100%;
     flex-grow: 1;
     color: white;
@@ -20,8 +22,10 @@
     width: 100%;
     /* padding-bottom: 100%; */
     height: 100vh;
-    margin: 2px;
-    border: 2px solid #ffffff1d;
+    /* margin: 2px; */
+    margin: 0.05em;
+    /* border: 2px solid #ffffff1d; */
+    border: 0.15em solid #ffffff1d;
     background-color: #ffffff3d;
     border-radius: 0.15em;
     cursor: pointer;

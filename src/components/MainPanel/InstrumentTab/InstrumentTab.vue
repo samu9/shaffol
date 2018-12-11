@@ -1,15 +1,26 @@
 <template>
   <div class="instrument-tab">
     <div class="circle-container">
-      <div class="circle">
+        <NoteMatrix v-if="name!='drums'" :instrument="instrument"/>
+      <!-- <div class="circle">
         <h1>{{name}}</h1>
-      </div>
+      </div>-->
     </div>
     <div class="btn-container">
-      <button v-bind:class="{active: mute}"  v-on:click="muteSong" onclick="this.blur()" id="mute">
+      <button
+        v-bind:class="{active: instrument.muted}"
+        v-on:click="mute"
+        onclick="this.blur()"
+        id="mute"
+      >
         <h1>MUTE</h1>
       </button>
-      <button v-bind:class="{active: solo}" v-on:click="soloSong" onclick="this.blur()" id="solo">
+      <button
+        v-bind:class="{active: musicService.solo == name}"
+        v-on:click="instrument.solo()"
+        onclick="this.blur()"
+        id="solo"
+      >
         <h1>SOLO</h1>
       </button>
     </div>
@@ -26,7 +37,7 @@
       </select>
     </div>
     <div class="shuffle">
-      <button v-on:click="shuffleSong" onclick="this.blur()">
+      <button v-on:click="instrument.shufflePattern()" onclick="this.blur()">
         <font-awesome-icon icon="random"/>
       </button>
     </div>
@@ -41,10 +52,12 @@
 
 <script>
 import "./InstrumentTab.css";
-
+import NoteMatrix from "../../NoteMatrix/NoteMatrix";
 export default {
   props: {
-    name: String
+    name: String,
+    instrument: Object,
+    musicService: Object
   },
   filters: {
     capitalize: function(value) {
@@ -61,42 +74,44 @@ export default {
         { value: "Distortion" },
         { value: "Delay" }
       ],
-      mute: false,
+      // mute: false,
       solo: false,
       selected: "Jazz",
       selected2: "Triangle"
     };
   },
+  components: {
+    NoteMatrix
+  },
   methods: {
-    printPattern() {
-      if (!this.pattern) return;
-      let patt = [];
-      for (let p of this.pattern) {
-        patt.push(p.join("-"));
-      }
-      return patt.join(" , ");
+    mute: function() {
+      this.instrument.muted = !this.instrument.muted;
+      // if (this.mute == false) {
+      //   this.mute = true;
+      // } else {
+      //   this.mute = false;
+      // }
+      // console.log("muted " + this.name);
     },
-    muteSong: function() {
-      if (this.mute == false) {
-        this.mute = true;
-      } else {
-        this.mute = false;
-      }
-      console.log("mute: " + this.mute);
-    },
-    soloSong: function() {
-      if (this.solo == false) {
-        this.solo = true;
-      } else {
-        this.solo = false;
-      }
-      console.log("solo: " + this.solo);
-    },
-    shuffleSong: function() {
+    // soloSong: function() {
+    //   if (this.solo == false) {
+    //     this.solo = true;
+    //   } else {
+    //     this.solo = false;
+    //   }
+    //   console.log("solo: " + this.solo);
+    // },
+    shuffle: function() {
+      this.instrument.shufflePattern();
       console.log("shuffle song");
     },
     clearInstrument: function() {
       console.log("clear inst");
+    }
+  },
+  created() {
+    if (this.name != "drums") {
+      this.instrument.shufflePattern();
     }
   }
 };
