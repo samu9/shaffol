@@ -15,12 +15,24 @@ export default class DrumsService {
         }
     ).toMaster();
 
-    pattern = {
-        "0": "C3",
-        "1": null,
-        "2": "C3",
-        "3": null,
-    }
+    pattern = [
+        ["C3","D#3"],
+        "D3",
+        ["D3"],
+        ["C3","D3"],
+        ["D3","E3","C#3"],
+        "D3",
+        ["C3","D3"],
+        "D3",
+        ["C3","D3"],
+        ["C3","D3"],
+        "D3",
+        "D3",
+        ["D3","E3","C#3"],
+        ["C3","D3"],
+        ["C3","D3"],
+        "D3",
+    ]
     muted = false;
     timeIndex = 0;
 
@@ -32,7 +44,7 @@ export default class DrumsService {
     }
 
     repeat() {
-        this.timeIndex = this.musicService.timeIndex % 4;
+        this.timeIndex = this.musicService.timeIndex % 16;
         if(typeof(this.pattern[this.timeIndex]) != 'object'){
             this.sampler.triggerAttack(this.pattern[this.timeIndex]);
         }

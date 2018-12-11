@@ -1,17 +1,21 @@
 import Tone from 'tone'
+// import { EventBus } from '../main'
+import Vue from 'vue';
 
 export default class InstrumentService {
-    synth = new Tone.PolySynth(6, Tone.Synth).toMaster();
+    synth = new Tone.PolySynth(2, Tone.Synth).toMaster();
     muted = false;
     timeIndex = 0;
     reverb = new Tone.Reverb().toMaster();
-    noteGrid = {};
+    pattern = [];
+    EventBus = new Vue();
 
     constructor(name, musicService, gridDim, octave, oscillator = 'triangle') {
         this.name = name;
         this.gridDim = gridDim;
         this.octave = octave;
         this.noteLength = gridDim / 2 + "n";
+        this.measureSize = Math.floor(musicService.measure / gridDim);
         this.musicService = musicService;
 
         // synth settings
@@ -20,17 +24,9 @@ export default class InstrumentService {
         // this.synth.envelope.release = 1;
         // this.synth.oscillator.type = oscillator;
 
-        // noteGrid initialization
+        // pattern initialization
         for (let t = 0; t < gridDim; t++) {
-            let obj = {};
-            let count = 0;
-            for (let n = 0; n < gridDim; n++) {
-                obj[n] = Math.random() < 0.2 && count < 2 ? true : false;
-                if (obj[n]) count++;
-                // obj[n] = false;
-                // obj[n] = (t == n);
-            }
-            this.noteGrid[t] = obj;
+            this.pattern[t] = [];
         }
 
         // starting the repeat function
@@ -38,37 +34,31 @@ export default class InstrumentService {
             this.repeat(time);
         }, "8n");
     }
-
-    reinitializeGrid(){
-        for (let t = 0; t < gridDim; t++) {
-            let obj = {};
-            let count = 0;
-            for (let n = 0; n < gridDim; n++) {
-                // obj[n] = Math.random() < 0.2 && count < 1 ? true : false;
-                // if (obj[n]) count++;
-                obj[n] = false;
-            }
-            this.noteGrid[t] = obj;
+   
+    repeat(time) {
+        // updating timeIndex
+        this.timeIndex = Math.floor(this.musicService.timeIndex / this.measureSize);
+        if (
+            !this.muted &&
+            (this.musicService.solo == null ||
+                this.musicService.solo == this.name) &&
+            this.musicService.timeIndex % this.measureSize == 0
+        ) {
+            this.synth.triggerAttackRelease(
+                this.musicService.getNote(this.pattern[this.timeIndex],this.octave), this.noteLength, time
+            ); 
         }
     }
 
-    repeat(time) {
-        // updating timeIndex
-        this.timeIndex = Math.floor(
-            this.musicService.timeIndex / (16 / this.gridDim)
-        );
-
-        // check if play the note
-        for (let n in this.noteGrid[this.timeIndex]) {
-            if (
-                !this.muted &&
-                (this.musicService.solo == null ||
-                    this.musicService.solo == this.name) &&
-                this.noteGrid[this.timeIndex][n] &&
-                this.musicService.timeIndex % Math.floor(16 / this.gridDim) == 0
-            ) {
-                this.synth.triggerAttackRelease(this.musicService.getNote(n, this.octave), this.noteLength, time);
+    shufflePattern(){
+        for(let t in this.pattern){
+            if(Math.random() > 0.2){
+                let newNote = Math.floor(Math.random() * this.gridDim);
+                this.pattern[t] = [newNote];
+            } else {
+                this.pattern[t] = [];
             }
         }
+        this.EventBus.$emit('shuffled',this.pattern);
     }
 }

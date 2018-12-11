@@ -20,27 +20,26 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
-
-var musicService = new MusicService("A", "pentatonicMajor", 120);
+export var musicService = new MusicService("A", "pentatonicMajor", 180);
 
 new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App }
+    el: '#app',
+    template: '<App/>',
+    components: { App }
 })
 
 // key bindings
 window.addEventListener('keydown', function (e) {
-  if (e.keyCode == 32) {
-    e.preventDefault();
-    musicService.toggleStartPause();
-  }
-  if (e.keyCode == 13) {
-    e.preventDefault();
-    musicService.stop();
-  }
+    if (e.keyCode == 32) {
+        e.preventDefault();
+        musicService.toggleStartPause();
+    }
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        musicService.stop();
+    }
 })
 
 
 
-export { musicService }
+// export { musicService,EventBus }
