@@ -1,6 +1,179 @@
 .instrument-tab{
+    display:flex;
     width: 100%;
-    padding: 20px;
-    border: 1px solid #ffffff2d;
-    margin: 20px auto;
+    border: 0.15vw solid royalblue;
+    margin: 1% auto;
+    flex-wrap: nowrap;
+    height:9.9vw;
+}
+
+.circle-container{
+    border-right: 0.15vw solid royalblue;
+    width: 20.204%;
+    height:100%;
+}
+.circle {
+    border-radius: 100%;
+    border: 0.15vw solid royalblue;
+    height: 100%;
+    width: 100%;
+    display: table;
+
+}
+.circle h1 {
+    color: royalblue;
+    font-size:1.8vw;
+    vertical-align: middle;
+    text-align:center; 
+    display: table-cell;
+    font-family:cursive;
+}
+
+.btn-container{
+    display:flex;
+    flex-direction: column;
+    width:19.177%;
+}
+
+
+.btn-container button{
+    border-radius: 100%;
+    height: 4vw;
+    width: 4vw;
+    
+}
+
+.btn-container h1{
+    margin-bottom:0;
+    font-size:0.9vw;
+    font-family: cursive;
+}
+#mute{
+    background: rgba(245, 245, 127, 0.596);
+    margin:0.4vw auto 0.1vw auto;
+    border:0.15vw solid yellow; 
+    box-shadow: 0 0.4vw rgba(245, 245, 127, 0.596);  
+}
+
+#mute.active{
+    background-color:yellow;
+    box-shadow: 0 0.15vw rgba(245, 245, 127, 0.596);
+    transform: translateY(0.2vw);
+}
+
+#mute:focus{
+    outline:0;
+}
+
+#solo{
+    background: rgb(207, 124, 124);
+    margin:0.5vw auto 0.5vw auto;
+    border: 0.15vw solid red;
+    box-shadow: 0 0.4vw rgb(207, 124, 124);  
+}
+
+#solo.active{
+    background-color:red;
+    box-shadow: 0 0.15vw rgb(207, 124, 124);  ;
+    transform: translateY(0.2vw);
+}
+
+#solo:focus{
+    outline:0;
+}
+
+.sound{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: cursive;
+}
+
+.sound h1{
+    font-size: larger;
+    color: #ffffff5d;
+    text-shadow: -0.1vw 0 1vw royalblue, 0 0.1vw royalblue, 0 0 royalblue, 0 0 royalblue;
+    margin-top: 1.4vw;
+    margin-bottom: 0.5vw;
+}
+
+.effect{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 6%;
+    font-family: cursive;
+}
+
+
+.effect h1{
+    font-size: larger;
+    color: #ffffff5d;
+    text-shadow: -0.1vw 0 1vw royalblue, 0 0.1vw royalblue, 0 0 royalblue, 0 0 royalblue;
+    margin-top: 1.4vw;
+    margin-bottom: 0.5vw;
+}
+
+.sound select{
+    padding:0.7vw;
+    background-color: inherit;
+    border: 0.15vw solid royalblue;
+    color: royalblue;
+    font-size:1vw;
+}
+
+.effect select{
+    padding:0.7vw;
+    background-color: inherit;
+    border: 0.15vw solid royalblue;
+    color: royalblue;
+    font-size:1vw;
+}
+
+select option{
+    font-size:1vw;
+}
+
+.shuffle{
+    display:flex;
+    margin-left:6%;
+}
+
+.shuffle button{
+    display:flex;
+    height: 3.21vw;
+    width: 5vw;
+    font-size: 2vw;
+    background: inherit;
+    color: royalblue;
+    border:0.15vw solid royalblue;
+    margin-top:3.35vw;
+}
+
+.shuffle button svg{
+    margin:auto;
+
+}
+.shuffle button:active{
+    background: #ffffff2d;
+}
+
+.clear{
+    display:flex;
+    flex-direction: row-reverse;
+    margin-right:0;
+    margin-top:0;
+    width: 4.59vw;
+}
+.clear button{
+    height: 3vw;
+    width: 3vw;
+    font-size: 1.5vw;
+    background: inherit;
+    color: red;
+    border:0;
+}
+
+.clear button:active{
+    background: #ffffff2d;
 }

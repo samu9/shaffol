@@ -5,7 +5,7 @@
       <NoteMatrix v-for="(inst, i) in instruments" :key="i" :instrument="inst"/>
     </div>
 
-    <div class="temporary-controls">
+    <!-- <div class="temporary-controls">
       <button
         class="btn btn-default"
         v-for="(instM,m) in instruments"
@@ -28,7 +28,7 @@
         class="btn btn-default"
         v-on:click="musicService.changeScale()"
       >Change Scale: {{ this.musicService.scale }}</button>
-    </div>
+    </div> -->
   </div>
 </template>
 

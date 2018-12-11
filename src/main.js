@@ -9,12 +9,11 @@ import './main.css'
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlay, faStop, faRandom, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faStop, faRandom, faPause, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import MusicService from './services/MusicService';
-import DrumsService from './services/DrumsService';
 
-library.add(faPlay, faStop, faRandom, faTimesCircle)
+library.add(faPlay,faStop,faRandom, faPause, faTrashAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
