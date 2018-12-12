@@ -48,6 +48,9 @@ export default class InstrumentService {
                 this.musicService.getNote(this.pattern[this.timeIndex], this.octave), this.noteLength, time
             );
         }
+        if(this.musicService.timeIndex == this.musicService.measure - 1){
+            this.shufflePattern();
+        }
     }
 
     shufflePattern() {
@@ -67,6 +70,11 @@ export default class InstrumentService {
             this.musicService.solo = null;
         } else {
             this.musicService.solo = this.name;
+        }
+    }
+    changeOscillator(oscillator){
+        for(let v in this.synth.voices){
+            this.synth.voices[v].oscillator.type = oscillator;
         }
     }
 }

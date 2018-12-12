@@ -4,12 +4,10 @@ import DrumsService from './DrumsService';
 export default class MusicService {
     notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
     scales = {
-        "minor": [0, 2, 3, 5, 7, 8, 10],
-        "major": [0, 2, 4, 5, 7, 9, 11],
-        "pentatonicMinor": [0, 3, 5, 7, 8],
-        "pentatonicMajor": [0, 2, 4, 7, 9],
-        // "arabic": [0, 1, 4, 5, 7, 8, 11],
-
+        "Minor": [0, 2, 3, 5, 7, 8, 10],
+        "Major": [0, 2, 4, 5, 7, 9, 11],
+        "Pentatonic Minor": [0, 3, 5, 7, 8],
+        "Pentatonic Major": [0, 2, 4, 7, 9],
     };
     time = 0;
     timeIndex = -1;

@@ -1,10 +1,11 @@
 <template>
   <div class="instrument-tab">
     <div class="circle-container">
-        <NoteMatrix v-if="name!='drums'" :instrument="instrument"/>
-      <!-- <div class="circle">
+      <div class="circle">
         <h1>{{name}}</h1>
-      </div>-->
+      </div>
+      <NoteMatrix v-if="name!='drums'" :instrument="instrument"/>
+      <font-awesome-icon class="drum-icon" v-else icon="drum"/>
     </div>
     <div class="btn-container">
       <button
@@ -15,6 +16,7 @@
       >
         <h1>MUTE</h1>
       </button>
+      
       <button
         v-bind:class="{active: musicService.solo == name}"
         v-on:click="instrument.solo()"
@@ -24,17 +26,23 @@
         <h1>SOLO</h1>
       </button>
     </div>
-    <div class="sound">
-      <h1>SOUND</h1>
-      <select v-model="selected">
-        <option v-for="inst in musicStyle" v-bind:key="inst.value">{{ inst.value }}</option>
-      </select>
-    </div>
-    <div class="effect">
-      <h1>EFFECT</h1>
-      <select v-model="selected2">
-        <option v-for="inst in effects" v-bind:key="inst.value">{{ inst.value }}</option>
-      </select>
+    <div class="instrument-settings" v-if="name!='drums'">
+      <div class="sound">
+        <h1>SOUND</h1>
+        <select>
+          <option
+            v-for="inst in musicStyle"
+            v-bind:key="inst"
+            v-on:click="instrument.changeOscillator(inst)"
+          >{{ inst }}</option>
+        </select>
+      </div>
+      <div class="effect">
+        <h1>EFFECT</h1>
+        <select v-model="selected2">
+          <option v-for="inst in effects" v-bind:key="inst.value">{{ inst.value }}</option>
+        </select>
+      </div>
     </div>
     <div class="shuffle">
       <button v-on:click="instrument.shufflePattern()" onclick="this.blur()">
@@ -68,9 +76,9 @@ export default {
   },
   data() {
     return {
-      musicStyle: [{ value: "Jazz" }, { value: "Rock" }, { value: "Pop" }],
+      musicStyle: ["sine", "sawtooth", "triangle"],
       effects: [
-        { value: "Triangle" },
+        { value: "Reverb" },
         { value: "Distortion" },
         { value: "Delay" }
       ],

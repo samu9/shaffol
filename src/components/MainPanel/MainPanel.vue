@@ -42,6 +42,7 @@ export default {
     return {
       instruments: {
         lead: new InstrumentService("lead", musicService, 16, 4, "triangle"),
+        // lead2: new InstrumentService("lead2", musicService, 8, 3, "sine"),
         bass: new InstrumentService("bass", musicService, 4, 2, "triangle"),
         drums: new DrumsService("drums", musicService)
       },

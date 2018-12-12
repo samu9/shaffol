@@ -1,5 +1,5 @@
 import Tone from 'tone'
-
+import drumPatterns from '../assets/drumPatterns';
 export default class DrumsService {
     sampler = new Tone.Sampler({
         "C3": "kick0.wav",
@@ -8,31 +8,15 @@ export default class DrumsService {
         "D#3": "hihat2.WAV",
         "E3": "clap0.WAV",
         "F3": "clap1.WAV",
-        },
+    },
         {
-            'release' : 1,
+            'release': 1,
             'baseUrl': 'https://s3.eu-central-1.amazonaws.com/shaffol/'
         }
     ).toMaster();
 
-    pattern = [
-        ["C3","D#3"],
-        "D3",
-        ["D3"],
-        ["C3","D3"],
-        ["D3","E3","C#3"],
-        "D3",
-        ["C3","D3"],
-        "D3",
-        ["C3","D3"],
-        ["C3","D3"],
-        "D3",
-        "D3",
-        ["D3","E3","C#3"],
-        ["C3","D3"],
-        ["C3","D3"],
-        "D3",
-    ];
+    drumPatterns = drumPatterns;
+    pattern = 3;
     muted = false;
     timeIndex = 0;
 
@@ -45,16 +29,27 @@ export default class DrumsService {
     }
 
     repeat() {
-        this.timeIndex = this.musicService.timeIndex % 16;
-        if(this.muted || (this.musicService.solo != this.name && this.musicService.solo != null))  return;
-        if(typeof(this.pattern[this.timeIndex]) != 'object'){
-            this.sampler.triggerAttack(this.pattern[this.timeIndex]);
+        this.timeIndex = this.musicService.timeIndex % this.drumPatterns[this.pattern].length;
+        if (this.muted || (this.musicService.solo != this.name && this.musicService.solo != null)) return;
+        if (typeof (this.drumPatterns[this.pattern][this.timeIndex]) != 'object') {
+            this.sampler.triggerAttack(this.drumPatterns[this.pattern][this.timeIndex]);
         }
-        else{
-            for(let n in this.pattern[this.timeIndex]){
-                this.sampler.triggerAttack(this.pattern[this.timeIndex][n]);
+        else {
+            for (let n in this.drumPatterns[this.pattern][this.timeIndex]) {
+                this.sampler.triggerAttack(this.drumPatterns[this.pattern][this.timeIndex][n]);
             }
         }
+        if(this.musicService.timeIndex == this.musicService.measure - 1){
+            this.shufflePattern();
+        }
+    }
+
+    shufflePattern() {
+        let newPattern = Math.floor(Math.random() * this.drumPatterns.length);
+        while (newPattern == this.pattern) {
+            newPattern = Math.floor(Math.random() * this.drumPatterns.length);
+        }
+        this.pattern = newPattern;
     }
 
     solo() {

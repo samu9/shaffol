@@ -9,17 +9,17 @@ import './main.css'
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlay, faStop, faRandom, faPause, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import MusicService from './services/MusicService';
 
-library.add(faPlay,faStop,faRandom, faPause, faTrashAlt)
+library.add(faPlay,faStop,faRandom, faPause, faTrashAlt, faDrum)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
-export var musicService = new MusicService("A", "pentatonicMajor", 180);
+export var musicService = new MusicService("C", "Pentatonic Major", 180);
 
 new Vue({
     el: '#app',

@@ -8,20 +8,28 @@
 }
 
 .circle-container{
+    position: relative;
     border-right: 0.15vw solid royalblue;
     width: 20.204%;
     height:100%;
 }
 .circle {
-    border-radius: 100%;
-    border: 0.15vw solid royalblue;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    /* border-radius: 100%; */
+    /* border-right: 0.15vw solid royalblue; */
     height: 100%;
     width: 100%;
     display: table;
+    background: #ffffff2d;
+    cursor: pointer;
 
 }
 .circle h1 {
-    color: royalblue;
+    /* color: royalblue; */
+    color: #ffffff;
+    text-shadow: 0.1em 0.1em 0em #0000003d;
     font-size:1.8vw;
     vertical-align: middle;
     text-align:center; 
@@ -176,4 +184,13 @@ select option{
 
 .clear button:active{
     background: #ffffff2d;
+}
+
+.instrument-settings{
+    display: flex;
+}
+.drum-icon{
+    font-size: 5em;
+    color: #ffffff2d;
+    margin: 0px auto;
 }
