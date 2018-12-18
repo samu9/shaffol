@@ -12,6 +12,10 @@ const drumPatterns = [
     [
         "C3",
         null,
+        null,
+        "D3",
+        "C3",
+        null,
         "D3",
         null
     ],

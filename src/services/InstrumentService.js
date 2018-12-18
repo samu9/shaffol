@@ -3,14 +3,16 @@ import Tone from 'tone'
 import Vue from 'vue';
 
 export default class InstrumentService {
-    synth = new Tone.PolySynth(2, Tone.Synth).toMaster();
-    muted = false;
+    synth = new Tone.PolySynth(2, Tone.Synth);
+    volumeControl = new Tone.Volume();
+    soloControl = new Tone.Solo();
     timeIndex = 0;
-    reverb = new Tone.Reverb().toMaster();
+    reverb = new Tone.Reverb();
     pattern = [];
     EventBus = new Vue();
 
     constructor(name, musicService, gridDim, octave, oscillator = 'triangle') {
+        this.synth.chain(this.volumeControl, this.soloControl, Tone.Master);
         this.name = name;
         this.gridDim = gridDim;
         this.octave = octave;
@@ -19,11 +21,12 @@ export default class InstrumentService {
         this.musicService = musicService;
 
         // synth settings
-        // this.synth.envelope.attack = 0.005;
-        // this.synth.envelope.decay = 0.1;
-        // this.synth.envelope.release = 1;
-        // this.synth.oscillator.type = oscillator;
-
+        for (let v in this.synth.voices) {
+            this.synth.voices[v].envelope.attack = 0.005;
+            this.synth.voices[v].envelope.decay = 0.1;
+            this.synth.voices[v].envelope.release = 1;
+            this.synth.voices[v].oscillator.type = oscillator;
+        }
         // pattern initialization
         for (let t = 0; t < gridDim; t++) {
             this.pattern[t] = [];
@@ -38,18 +41,14 @@ export default class InstrumentService {
     repeat(time) {
         // updating timeIndex
         this.timeIndex = Math.floor(this.musicService.timeIndex / this.measureSize);
-        if (
-            !this.muted &&
-            (this.musicService.solo == null ||
-                this.musicService.solo == this.name) &&
-            this.musicService.timeIndex % this.measureSize == 0
-        ) {
+        // auto-shuffle
+        // if (this.musicService.timeIndex == 0) {
+        //     this.shufflePattern();
+        // }
+        if (this.musicService.timeIndex % this.measureSize == 0) {
             this.synth.triggerAttackRelease(
                 this.musicService.getNote(this.pattern[this.timeIndex], this.octave), this.noteLength, time
             );
-        }
-        if(this.musicService.timeIndex == this.musicService.measure - 1){
-            this.shufflePattern();
         }
     }
 
@@ -64,16 +63,8 @@ export default class InstrumentService {
         }
         this.EventBus.$emit('shuffled', this.pattern);
     }
-    
-    solo() {
-        if (this.musicService.solo == this.name) {
-            this.musicService.solo = null;
-        } else {
-            this.musicService.solo = this.name;
-        }
-    }
-    changeOscillator(oscillator){
-        for(let v in this.synth.voices){
+    changeOscillator(oscillator) {
+        for (let v in this.synth.voices) {
             this.synth.voices[v].oscillator.type = oscillator;
         }
     }

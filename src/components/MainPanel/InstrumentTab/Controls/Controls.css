@@ -1,0 +1,18 @@
+.control-select{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: left;
+    font-family: cursive;
+    margin: 0px 0.3em;
+}
+.control-select select{
+    padding: 0.1em;
+    font-size: 0.9em;
+}
+
+.control-select label{
+    font-size: 1em;
+    color: royalblue;
+    text-shadow: -0.1vw 0 1vw royalblue, 0 0.1vw royalblue, 0 0 royalblue, 0 0 royalblue;
+}

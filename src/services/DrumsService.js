@@ -13,14 +13,15 @@ export default class DrumsService {
             'release': 1,
             'baseUrl': 'https://s3.eu-central-1.amazonaws.com/shaffol/'
         }
-    ).toMaster();
-
+    );
+    volumeControl = new Tone.Volume();
+    soloControl = new Tone.Solo();
     drumPatterns = drumPatterns;
-    pattern = 3;
-    muted = false;
+    pattern = 6;
     timeIndex = 0;
 
     constructor(name, musicService) {
+        this.sampler.chain(this.volumeControl, this.soloControl, Tone.Master);
         this.name = name;
         this.musicService = musicService;
         this.musicService.transport.scheduleRepeat(time => {
@@ -30,7 +31,6 @@ export default class DrumsService {
 
     repeat() {
         this.timeIndex = this.musicService.timeIndex % this.drumPatterns[this.pattern].length;
-        if (this.muted || (this.musicService.solo != this.name && this.musicService.solo != null)) return;
         if (typeof (this.drumPatterns[this.pattern][this.timeIndex]) != 'object') {
             this.sampler.triggerAttack(this.drumPatterns[this.pattern][this.timeIndex]);
         }
@@ -39,9 +39,10 @@ export default class DrumsService {
                 this.sampler.triggerAttack(this.drumPatterns[this.pattern][this.timeIndex][n]);
             }
         }
-        if(this.musicService.timeIndex == this.musicService.measure - 1){
-            this.shufflePattern();
-        }
+        // auto-shuffle
+        // if(this.musicService.timeIndex == this.musicService.measure - 1){
+        //     this.shufflePattern();
+        // }
     }
 
     shufflePattern() {
@@ -50,13 +51,5 @@ export default class DrumsService {
             newPattern = Math.floor(Math.random() * this.drumPatterns.length);
         }
         this.pattern = newPattern;
-    }
-
-    solo() {
-        if (this.musicService.solo == this.name) {
-            this.musicService.solo = null;
-        } else {
-            this.musicService.solo = this.name;
-        }
     }
 }

@@ -13,7 +13,6 @@ export default class MusicService {
     timeIndex = -1;
     measure = 16;
     transport = Tone.Transport;
-    solo = null;
 
     constructor(tonic, scale, bpm) {
         this.tonic = tonic;
@@ -31,9 +30,13 @@ export default class MusicService {
     }
 
     changeTonic(newTonic) {
-        // let randIndex = Math.floor(Math.random() * this.notes.length);
-        // this.tonicIndex = randIndex;
-        // this.tonic = this.notes[this.tonicIndex];
+        this.tonicIndex = this.notes.indexOf(newTonic);
+        this.tonic = newTonic;
+    }
+    randomTonic(){
+        let randIndex = Math.floor(Math.random() * this.notes.length);
+        this.tonicIndex = randIndex;
+        this.tonic = this.notes[this.tonicIndex];
         this.tonic = newTonic;
     }
     changeScale(newScale) {

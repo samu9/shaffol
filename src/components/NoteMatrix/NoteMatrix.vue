@@ -1,6 +1,6 @@
 <template>
   <div v-if="open" class="note-matrix">
-    <!-- <font-awesome-icon v-on:click="open = false" class="close-button" icon="times-circle"/> -->
+    <!-- <font-awesome-icon v-if="state == 'open'" v-on:click="open = false" class="close-button" icon="times-circle"/> -->
     <div
       class="time-slot"
       v-for="(time, timeKey) in noteGrid"
@@ -27,7 +27,8 @@ import InstrumentService from "../../services/InstrumentService";
 
 export default {
   props: {
-    instrument: Object
+    instrument: Object,
+    state: String
   },
   data() {
     return {

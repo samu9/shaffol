@@ -2,34 +2,6 @@
   <div id="main">
     <h1>Shaffol</h1>
     <MainPanel/>
-    <!-- <div class="main-element">
-      <NoteMatrix v-for="(inst, i) in instruments" :key="i" :instrument="inst"/>
-    </div> -->
-
-    <!-- <div class="temporary-controls">
-      <button
-        class="btn btn-default"
-        v-for="(instM,m) in instruments"
-        v-bind:class="{disabled: instM.muted}"
-        :key="m"
-        v-on:click="instM.muted=!instM.muted"
-      >{{ 'Mute ' + m }}</button>
-      <button
-        class="btn btn-default"
-        v-for="(instS,s) in instruments"
-        v-bind:class="{disabled: musicService.solo == s}"
-        :key="s"
-        v-on:click="solo(s)"
-      >{{ 'Solo ' + s }}</button>
-      <button
-        class="btn btn-default"
-        v-on:click="musicService.changeTonic()"
-      >Change Tonic: {{ this.musicService.tonic }}</button>
-      <button
-        class="btn btn-default"
-        v-on:click="musicService.changeScale()"
-      >Change Scale: {{ this.musicService.scale }}</button>
-    </div> -->
   </div>
 </template>
 
@@ -43,19 +15,8 @@ import { musicService } from "./main.js";
 import InstrumentService from "./services/InstrumentService";
 import DrumsService from "./services/DrumsService";
 export default {
-  data() {
-    return {
-      // instruments: {
-      //   lead: new InstrumentService("lead", musicService, 16, 4, "triangle"),
-      //   bass: new InstrumentService("bass", musicService, 4, 2, "triangle")
-      // },
-      // drums: new DrumsService(musicService),
-      // musicService: musicService
-    };
-  },
   components: {
     MainPanel,
-    NoteMatrix
   },
   created: function() {},
   methods: {
@@ -66,8 +27,6 @@ export default {
 
 <style>
 #main {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }

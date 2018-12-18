@@ -1,54 +1,44 @@
 <template>
   <div class="instrument-tab">
-    <div class="circle-container">
-      <div class="circle">
+    <div class="name-container">
+      <div v-on:click="openNoteMatrix()" v-if="noteMatrixState == 'preview'" class="circle">
         <h1>{{name}}</h1>
       </div>
-      <NoteMatrix v-if="name!='drums'" :instrument="instrument"/>
-      <font-awesome-icon class="drum-icon" v-else icon="drum"/>
+      <NoteMatrix v-if="name != 'drums'" :instrument="instrument" :state="noteMatrixState"/>
+      <font-awesome-icon v-else class="drum-icon" icon="drum"/>
     </div>
+
+    <input
+      v-model="instrument.volumeControl.volume.value"
+      type="range"
+      min="-50"
+      max="5"
+      class="volume-slider"
+      orient="vertical"
+    >
     <div class="btn-container">
       <button
-        v-bind:class="{active: instrument.muted}"
+        v-bind:class="{active: instrument.volumeControl.mute}"
         v-on:click="mute"
         onclick="this.blur()"
-        id="mute"
-      >
-        <h1>MUTE</h1>
-      </button>
+        class="mute"
+      >MUTE</button>
       
       <button
-        v-bind:class="{active: musicService.solo == name}"
-        v-on:click="instrument.solo()"
+        v-bind:class="{active: soloProva}"
+        v-on:click="solo"
         onclick="this.blur()"
-        id="solo"
-      >
-        <h1>SOLO</h1>
-      </button>
+        class="solo"
+      >SOLO</button>
     </div>
-    <div class="instrument-settings" v-if="name!='drums'">
-      <div class="sound">
-        <h1>SOUND</h1>
-        <select>
-          <option
-            v-for="inst in musicStyle"
-            v-bind:key="inst"
-            v-on:click="instrument.changeOscillator(inst)"
-          >{{ inst }}</option>
-        </select>
-      </div>
-      <div class="effect">
-        <h1>EFFECT</h1>
-        <select v-model="selected2">
-          <option v-for="inst in effects" v-bind:key="inst.value">{{ inst.value }}</option>
-        </select>
-      </div>
-    </div>
-    <div class="shuffle">
-      <button v-on:click="instrument.shufflePattern()" onclick="this.blur()">
-        <font-awesome-icon icon="random"/>
-      </button>
-    </div>
+
+    <SynthControls class="instrument-controls" v-if="name != 'drums'" :instrument="instrument"/>
+    <DrumsControls class="instrument-controls" v-else :instrument="instrument"/>
+
+    <button class="shuffle" v-on:click="instrument.shufflePattern()" onclick="this.blur()">
+      <font-awesome-icon icon="random"/>
+    </button>
+
     <div class="clear">
       <button v-on:click="clearInstrument" onclick="this.blur()">
         <font-awesome-icon icon="trash-alt"/>
@@ -61,6 +51,8 @@
 <script>
 import "./InstrumentTab.css";
 import NoteMatrix from "../../NoteMatrix/NoteMatrix";
+import SynthControls from "./Controls/SynthControls";
+import DrumsControls from "./Controls/DrumsControls";
 export default {
   props: {
     name: String,
@@ -76,45 +68,32 @@ export default {
   },
   data() {
     return {
-      musicStyle: ["sine", "sawtooth", "triangle"],
-      effects: [
-        { value: "Reverb" },
-        { value: "Distortion" },
-        { value: "Delay" }
-      ],
-      // mute: false,
-      solo: false,
-      selected: "Jazz",
-      selected2: "Triangle"
+      noteMatrixState: "preview",
+      soloProva: false
     };
   },
   components: {
-    NoteMatrix
+    NoteMatrix,
+    SynthControls,
+    DrumsControls
   },
   methods: {
     mute: function() {
-      this.instrument.muted = !this.instrument.muted;
-      // if (this.mute == false) {
-      //   this.mute = true;
-      // } else {
-      //   this.mute = false;
-      // }
-      // console.log("muted " + this.name);
+      this.instrument.volumeControl.mute = !this.instrument.volumeControl.mute;
+      console.log(this.instrument.volumeControl.volume.value)
     },
-    // soloSong: function() {
-    //   if (this.solo == false) {
-    //     this.solo = true;
-    //   } else {
-    //     this.solo = false;
-    //   }
-    //   console.log("solo: " + this.solo);
-    // },
+     solo() {
+        this.instrument.soloControl.solo = !this.instrument.soloControl.solo;
+        this.soloProva = this.instrument.soloControl.solo;
+    },
     shuffle: function() {
       this.instrument.shufflePattern();
-      console.log("shuffle song");
     },
     clearInstrument: function() {
       console.log("clear inst");
+    },
+    openNoteMatrix: function() {
+      this.noteMatrixState = "open";
     }
   },
   created() {

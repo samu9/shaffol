@@ -14,15 +14,15 @@
 }
 
 .main-panel .controls button{
-    background: transparent;
-    color: royalblue;
-    border: 2px solid royalblue;
+    border: 3px solid;
     height:65px;
     width:65px;
-    border-radius:55px;
-    font-family: monospace;
+    border-radius:50%;
     font-size:20px;
-    margin: 5px;
+    transition: 0.5s;
+}
+.main-panel .controls button:hover{
+    /* box-shadow: inset 0px 4px 1px royalblue, inset 0px -4px 1px royalblue; */
 }
 .main-panel .controls button:active{
     background: #ffffff2d;

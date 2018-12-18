@@ -1,3 +1,6 @@
+.instrument-controls{
+    display: flex;
+}
 .instrument-tab{
     display:flex;
     width: 100%;
@@ -5,9 +8,10 @@
     margin: 1% auto;
     flex-wrap: nowrap;
     height:9.9vw;
+    align-items: center;
 }
 
-.circle-container{
+.name-container{
     position: relative;
     border-right: 0.15vw solid royalblue;
     width: 20.204%;
@@ -17,8 +21,6 @@
     position: absolute;
     top: 0%;
     left: 0%;
-    /* border-radius: 100%; */
-    /* border-right: 0.15vw solid royalblue; */
     height: 100%;
     width: 100%;
     display: table;
@@ -27,7 +29,6 @@
 
 }
 .circle h1 {
-    /* color: royalblue; */
     color: #ffffff;
     text-shadow: 0.1em 0.1em 0em #0000003d;
     font-size:1.8vw;
@@ -36,27 +37,76 @@
     display: table-cell;
     font-family:cursive;
 }
-
+.volume-slider{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */;
+    height: 100%;
+    margin: 0.3em;
+}
+.volume-slider::-moz-range-thumb, .volume-slider::-webkit-slider-thumb {
+    width: 1em;
+    height: 1em;
+    border: 0px;
+    border-radius: 50%;
+    background: royalblue;
+    cursor: pointer;
+  }
 .btn-container{
     display:flex;
     flex-direction: column;
-    width:19.177%;
+    justify-content: center;
+    /* width:19.177%; */
 }
 
 
 .btn-container button{
-    border-radius: 100%;
-    height: 4vw;
-    width: 4vw;
-    
+    background: transparent;
+    margin: 0.3em;
+    border: 1px solid royalblue;
+    color: royalblue;
+    /* border-radius: 3px; */
+    transition: 0.5s;
+    font-family: sans-serif;
+    /* border-radius: 100%; */
+    /* height: 4vw; */
+    /* width: 4vw; */ 
+}
+.btn-container button:focus{
+    outline: 0;
 }
 
-.btn-container h1{
+/* .btn-container h1{
     margin-bottom:0;
     font-size:0.9vw;
     font-family: cursive;
+} */
+.btn-container button.mute{
+    border-color: #ffc400;
+    color:#ffc400;  
 }
-#mute{
+.btn-container button.mute:hover{
+    box-shadow: inset 0px 2px 2px #947100,inset 0px -2px 2px #947100;
+}
+.btn-container button.mute.active{
+    box-shadow: inset 0px 2px 2px #947100,inset 0px -2px 2px #947100;
+    border-color: #dfab00;
+    background: #ffc400;
+    color: #0000008d;
+}
+.btn-container button.solo{
+    border-color:#cf0000;
+    color: #cf0000;
+}
+.btn-container button.solo:hover{
+    box-shadow: inset 0px 2px 2px #700000,inset 0px -2px 2px #700000;
+}
+.btn-container button.solo.active{
+    box-shadow: inset 0px 2px 2px #700000,inset 0px -2px 2px #700000;
+    border-color: #af0000;
+    background: #cf0000;
+    color: #0000008d;
+}
+/* #mute{
     background: rgba(245, 245, 127, 0.596);
     margin:0.4vw auto 0.1vw auto;
     border:0.15vw solid yellow; 
@@ -88,77 +138,19 @@
 
 #solo:focus{
     outline:0;
-}
-
-.sound{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: cursive;
-}
-
-.sound h1{
-    font-size: larger;
-    color: #ffffff5d;
-    text-shadow: -0.1vw 0 1vw royalblue, 0 0.1vw royalblue, 0 0 royalblue, 0 0 royalblue;
-    margin-top: 1.4vw;
-    margin-bottom: 0.5vw;
-}
-
-.effect{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 6%;
-    font-family: cursive;
-}
-
-
-.effect h1{
-    font-size: larger;
-    color: #ffffff5d;
-    text-shadow: -0.1vw 0 1vw royalblue, 0 0.1vw royalblue, 0 0 royalblue, 0 0 royalblue;
-    margin-top: 1.4vw;
-    margin-bottom: 0.5vw;
-}
-
-.sound select{
-    padding:0.7vw;
-    background-color: inherit;
-    border: 0.15vw solid royalblue;
-    color: royalblue;
-    font-size:1vw;
-}
-
-.effect select{
-    padding:0.7vw;
-    background-color: inherit;
-    border: 0.15vw solid royalblue;
-    color: royalblue;
-    font-size:1vw;
-}
+} */
 
 select option{
     font-size:1vw;
 }
 
 .shuffle{
-    display:flex;
-    margin-left:6%;
-}
-
-.shuffle button{
-    display:flex;
-    height: 3.21vw;
-    width: 5vw;
+    margin-left: auto;
     font-size: 2vw;
-    background: inherit;
-    color: royalblue;
-    border:0.15vw solid royalblue;
-    margin-top:3.35vw;
 }
 
-.shuffle button svg{
+
+.shuffle svg{
     margin:auto;
 
 }
