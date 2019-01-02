@@ -1,9 +1,11 @@
 <template>
   <div class="control-select">
-    <label>Pattern</label>
-    <select v-model="instrument.pattern">
-      <option v-for="(pattern, p) in instrument.drumPatterns" v-bind:key="p">{{ p }}</option>
-    </select>
+    <md-field>
+      <label for="pattern">Pattern</label>
+      <md-select v-model="instrument.pattern" name="pattern">
+        <md-option v-for="(pattern, p) in instrument.drumPatterns" v-bind:key="p" v-bind:value="p">{{ p }}</md-option>
+      </md-select>
+    </md-field>
   </div>
 </template>
 
@@ -13,10 +15,10 @@ export default {
     name: String,
     instrument: Object,
     musicService: Object
-  }
+  },
 };
 </script>
 
 <style>
-@import './Controls.css';
+/* @import "./Controls.css"; */
 </style>

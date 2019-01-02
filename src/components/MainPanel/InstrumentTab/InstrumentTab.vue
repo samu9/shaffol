@@ -8,41 +8,53 @@
       <font-awesome-icon v-else class="drum-icon" icon="drum"/>
     </div>
 
-    <input
-      v-model="instrument.volumeControl.volume.value"
-      type="range"
-      min="-50"
-      max="5"
-      class="volume-slider"
-      orient="vertical"
-    >
-    <div class="btn-container">
-      <button
-        v-bind:class="{active: instrument.volumeControl.mute}"
-        v-on:click="mute"
-        onclick="this.blur()"
-        class="mute"
-      >MUTE</button>
-      
-      <button
-        v-bind:class="{active: soloProva}"
-        v-on:click="solo"
-        onclick="this.blur()"
-        class="solo"
-      >SOLO</button>
-    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-4">
+            <input
+              v-model="instrument.volumeControl.volume.value"
+              type="range"
+              min="-50"
+              max="5"
+              class="volume-slider"
+              orient="vertical"
+            >
+          </div>
+          <div class="col-md-8">
+            <div class="btn-container">
+              <button
+                v-bind:class="{active: instrument.volumeControl.mute}"
+                v-on:click="mute"
+                onclick="this.blur()"
+                class="mute"
+              >MUTE</button>
+              
+              <button
+                v-bind:class="{active: soloProva}"
+                v-on:click="solo"
+                onclick="this.blur()"
+                class="solo"
+              >SOLO</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <SynthControls v-if="name != 'drums'" :instrument="instrument"/>
+        <DrumsControls v-else :instrument="instrument"/>
+      </div>
+      <div class="col-md-3">
+        <button class="shuffle" v-on:click="instrument.shufflePattern()" onclick="this.blur()">
+          <font-awesome-icon icon="random"/>
+        </button>
 
-    <SynthControls class="instrument-controls" v-if="name != 'drums'" :instrument="instrument"/>
-    <DrumsControls class="instrument-controls" v-else :instrument="instrument"/>
-
-    <button class="shuffle" v-on:click="instrument.shufflePattern()" onclick="this.blur()">
-      <font-awesome-icon icon="random"/>
-    </button>
-
-    <div class="clear">
-      <button v-on:click="clearInstrument" onclick="this.blur()">
-        <font-awesome-icon icon="trash-alt"/>
-      </button>
+        <div class="clear">
+          <button v-on:click="clearInstrument" onclick="this.blur()">
+            <font-awesome-icon icon="trash-alt"/>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -80,11 +92,11 @@ export default {
   methods: {
     mute: function() {
       this.instrument.volumeControl.mute = !this.instrument.volumeControl.mute;
-      console.log(this.instrument.volumeControl.volume.value)
+      console.log(this.instrument.volumeControl.volume.value);
     },
-     solo() {
-        this.instrument.soloControl.solo = !this.instrument.soloControl.solo;
-        this.soloProva = this.instrument.soloControl.solo;
+    solo() {
+      this.instrument.soloControl.solo = !this.instrument.soloControl.solo;
+      this.soloProva = this.instrument.soloControl.solo;
     },
     shuffle: function() {
       this.instrument.shufflePattern();

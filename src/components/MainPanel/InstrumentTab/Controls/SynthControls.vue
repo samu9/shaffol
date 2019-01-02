@@ -1,20 +1,31 @@
 <template>
   <div>
-    <div class="control-select">
-      <label>Sound</label>
-      <select v-model="instrument.synth.voices[0].oscillator.type">
-        <option
-          v-for="inst in soundwave"
-          v-bind:key="inst"
-          v-on:click="instrument.changeOscillator(inst)"
-        >{{ inst }}</option>
-      </select>
-    </div>
-    <div class="control-select">
-      <label>Effect</label>
-      <select v-model="selectedEffect">
-        <option v-for="inst in effects" v-bind:key="inst.value">{{ inst.value }}</option>
-      </select>
+    <div class="row">
+      <div class="col-md-6">
+        <md-field>
+          <label for="sound">Sound</label>
+          <md-select v-model="instrument.synth.voices[0].oscillator.type" name="sound">
+            <md-option
+              v-for="inst in soundwave"
+              v-bind:key="inst"
+              v-on:click="instrument.changeOscillator(inst)"
+              v-bind:value="inst"
+            >{{ inst }}</md-option>
+          </md-select>
+        </md-field>
+      </div>
+      <div class="col-md-6">
+        <md-field>
+          <label for="effect">Effect</label>
+          <md-select v-model="selectedEffect" name="effect">
+            <md-option
+              v-for="e in effects"
+              v-bind:key="e.value"
+              v-bind:value="e.value"
+            >{{ e.value }}</md-option>
+          </md-select>
+        </md-field>
+      </div>
     </div>
   </div>
 </template>
@@ -38,6 +49,6 @@ export default {
 </script>
 
 <style>
-@import './Controls.css';
+@import "./Controls.css";
 </style>
 

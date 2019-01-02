@@ -45,3 +45,7 @@
     height:9.9vw;
     -webkit-filter: grayscale(100%);
 }
+
+.md-field{
+    display: inline-block;
+}

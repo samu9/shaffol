@@ -11,13 +11,13 @@ body{
 button{
     cursor: pointer;
 }
-button, select, input{
+button, input{
     border: 0.15vw solid royalblue;
     color: royalblue; 
     background-color: transparent;
     outline:none;
 }
-select, input{
+input{
     padding:0.7vw;   
 }
 
