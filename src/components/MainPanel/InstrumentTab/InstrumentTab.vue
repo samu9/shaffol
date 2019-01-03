@@ -2,12 +2,11 @@
   <div class="instrument-tab">
     <div class="name-container">
       <div v-on:click="openNoteMatrix()" v-if="noteMatrixState == 'preview'" class="circle">
-        <h1>{{name}}</h1>
+        <h1>{{name | capitalize }}</h1>
       </div>
       <NoteMatrix v-if="name != 'drums'" :instrument="instrument" :state="noteMatrixState"/>
       <font-awesome-icon v-else class="drum-icon" icon="drum"/>
     </div>
-
     <div class="row">
       <div class="col-md-3">
         <div class="row">
@@ -21,38 +20,43 @@
               orient="vertical"
             >
           </div>
-          <div class="col-md-8">
+          <div class="col-md-7">
             <div class="btn-container">
-              <button
+              <md-button
                 v-bind:class="{active: instrument.volumeControl.mute}"
                 v-on:click="mute"
                 onclick="this.blur()"
-                class="mute"
-              >MUTE</button>
-              
-              <button
+                class="md-raised mute"
+              >Mute</md-button>
+              <md-button
                 v-bind:class="{active: soloProva}"
                 v-on:click="solo"
                 onclick="this.blur()"
-                class="solo"
-              >SOLO</button>
+                class="md-raised solo"
+              >Solo</md-button>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 effects">
         <SynthControls v-if="name != 'drums'" :instrument="instrument"/>
         <DrumsControls v-else :instrument="instrument"/>
       </div>
-      <div class="col-md-3">
-        <button class="shuffle" v-on:click="instrument.shufflePattern()" onclick="this.blur()">
-          <font-awesome-icon icon="random"/>
-        </button>
-
-        <div class="clear">
-          <button v-on:click="clearInstrument" onclick="this.blur()">
+      <div class="col-md-3 last">
+        <div class="row-md-3 offset"></div>
+        <div class="row-md-3">
+          <md-button
+            v-on:click="instrument.shufflePattern()"
+            onclick="this.blur()"
+            class="md-raised shuffle"
+          >
+            <font-awesome-icon icon="random"/>
+          </md-button>
+        </div>
+        <div class="row-md-3 cleardiv">
+          <md-button v-on:click="clearInstrument" onclick="this.blur()" class="md-raised clear">
             <font-awesome-icon icon="trash-alt"/>
-          </button>
+          </md-button>
         </div>
       </div>
     </div>
@@ -87,7 +91,7 @@ export default {
   components: {
     NoteMatrix,
     SynthControls,
-    DrumsControls
+    DrumsControls,
   },
   methods: {
     mute: function() {

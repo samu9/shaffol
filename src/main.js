@@ -7,9 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './main.css'
 
-import { MdField, MdMenu, MdList } from 'vue-material/dist/components'
+import { MdField, MdMenu, MdList, MdButton} from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
+/*import 'vue-material/dist/theme/default.css'*/
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -23,6 +23,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(MdField)
 Vue.use(MdMenu)
 Vue.use(MdList)
+Vue.use(MdButton)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 export var musicService = new MusicService("C", "Pentatonic Major", 180);

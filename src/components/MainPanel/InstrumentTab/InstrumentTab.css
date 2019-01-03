@@ -14,7 +14,7 @@
 .name-container{
     position: relative;
     border-right: 0.15vw solid royalblue;
-    width: 20.204%;
+    width: 25%;
     height:100%;
 }
 .circle {
@@ -31,17 +31,18 @@
 .circle h1 {
     color: #ffffff;
     text-shadow: 0.1em 0.1em 0em #0000003d;
-    font-size:1.8vw;
+    font-size:2vw;
     vertical-align: middle;
     text-align:center; 
     display: table-cell;
-    font-family:cursive;
+    font-family:'Courier';
 }
 .volume-slider{
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */;
-    height: 100%;
-    margin: 0.3em;
+    height: 90%;
+    width:20%;
+    margin: 0.5em;
 }
 .volume-slider::-moz-range-thumb, .volume-slider::-webkit-slider-thumb {
     width: 1em;
@@ -55,128 +56,72 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
-    /* width:19.177%; */
+
 }
 
-
-.btn-container button{
-    background: transparent;
-    margin: 0.3em;
-    border: 1px solid royalblue;
-    color: royalblue;
-    /* border-radius: 3px; */
+.btn-container .md-button{
+    border: 2px solid ;
     transition: 0.5s;
     font-family: sans-serif;
-    /* border-radius: 100%; */
-    /* height: 4vw; */
-    /* width: 4vw; */ 
-}
-.btn-container button:focus{
-    outline: 0;
+    width: 4vw; 
+    margin-left: auto;
 }
 
-/* .btn-container h1{
-    margin-bottom:0;
-    font-size:0.9vw;
-    font-family: cursive;
-} */
-.btn-container button.mute{
+.btn-container .md-button.mute{
     border-color: #ffc400;
-    color:#ffc400;  
+    color:#ffc400; 
 }
-.btn-container button.mute:hover{
-    box-shadow: inset 0px 2px 2px #947100,inset 0px -2px 2px #947100;
-}
-.btn-container button.mute.active{
-    box-shadow: inset 0px 2px 2px #947100,inset 0px -2px 2px #947100;
+
+.btn-container .md-button.mute.active{
     border-color: #dfab00;
     background: #ffc400;
     color: #0000008d;
 }
-.btn-container button.solo{
-    border-color:#cf0000;
+
+.btn-container .md-button.solo{
     color: #cf0000;
+    border-color: #cf0000;
 }
-.btn-container button.solo:hover{
-    box-shadow: inset 0px 2px 2px #700000,inset 0px -2px 2px #700000;
-}
-.btn-container button.solo.active{
-    box-shadow: inset 0px 2px 2px #700000,inset 0px -2px 2px #700000;
-    border-color: #af0000;
+
+.btn-container .md-button.solo.active{
     background: #cf0000;
+    border-color:#af0000;
     color: #0000008d;
 }
-/* #mute{
-    background: rgba(245, 245, 127, 0.596);
-    margin:0.4vw auto 0.1vw auto;
-    border:0.15vw solid yellow; 
-    box-shadow: 0 0.4vw rgba(245, 245, 127, 0.596);  
+
+.col-md-6.effects{
+    padding-right:0px;
+    padding-left:20px;
 }
 
-#mute.active{
-    background-color:yellow;
-    box-shadow: 0 0.15vw rgba(245, 245, 127, 0.596);
-    transform: translateY(0.2vw);
+.col-md-3.last{
+    padding-left:0px;
 }
-
-#mute:focus{
-    outline:0;
-}
-
-#solo{
-    background: rgb(207, 124, 124);
-    margin:0.5vw auto 0.5vw auto;
-    border: 0.15vw solid red;
-    box-shadow: 0 0.4vw rgb(207, 124, 124);  
-}
-
-#solo.active{
-    background-color:red;
-    box-shadow: 0 0.15vw rgb(207, 124, 124);  ;
-    transform: translateY(0.2vw);
-}
-
-#solo:focus{
-    outline:0;
-} */
-
-/* select option{
-    font-size:1vw;
-} */
-
-.shuffle{
+.md-button.shuffle{
     margin-left: auto;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
-
-.shuffle svg{
-    margin:auto;
-
-}
 .shuffle button:active{
     background: #ffffff2d;
 }
-
-.clear{
-    display:flex;
-    flex-direction: row-reverse;
-    margin-right:0;
-    margin-top:0;
-    width: 4.59vw;
+.offset{
+    min-height: 48px;
 }
-.clear button{
-    height: 3vw;
-    width: 3vw;
-    font-size: 1.5vw;
+
+.cleardiv{
+    display:flex;
+    flex-direction:row-reverse;
+}
+.md-button.clear{
+    min-width: 50px;
+    font-size: 1.2vw;
+    width:2vw;
     background: inherit;
     color: red;
-    border:0;
+    border:1px solid red;
 }
 
-.clear button:active{
-    background: #ffffff2d;
-}
 
 .instrument-settings{
     display: flex;
@@ -185,4 +130,9 @@
     font-size: 5em;
     color: #ffffff2d;
     margin: 0px auto;
+}
+
+.row{
+    width:100%;
+    align-items: center;
 }

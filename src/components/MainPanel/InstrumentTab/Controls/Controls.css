@@ -3,16 +3,16 @@
     justify-content: center;
     flex-direction: column;
     align-items: left;
-    font-family: cursive;
+    font-family: 'Courier';
     margin: 0px 0.3em;
 }
-/* .control-select select{
-    padding: 0.1em;
-    font-size: 0.9em;
+
+.md-list-item-container{
+    background-color:#000830 ;
+    opacity:0.8;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.control-select label{
-    font-size: 1em;
-    color: royalblue;
-    text-shadow: -0.1vw 0 1vw royalblue, 0 0.1vw royalblue, 0 0 royalblue, 0 0 royalblue;
-} */
+.md-field{
+    font-family: 'Courier New', Courier, monospace;
+}

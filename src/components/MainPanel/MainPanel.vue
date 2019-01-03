@@ -9,7 +9,7 @@
     />
 
     <div class="row controls">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <button v-on:click="musicService.toggleStartPause();" onclick="this.blur()">
           <font-awesome-icon
             v-bind:icon="musicService.transport.state == 'started'?  'pause' : 'play'"
@@ -19,7 +19,7 @@
           <font-awesome-icon icon="stop"/>
         </button>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-3">
         <md-field>
           <label for="tonic">Tonic</label>
           <md-select v-model="musicService.tonic" name="tonic">
@@ -31,10 +31,11 @@
             >{{ tonic }}</md-option>
           </md-select>
         </md-field>
-
+      </div>
+      <div class="col-md-3">
         <md-field>
           <label for="scale">Scale</label>
-          <md-select v-model="musicService.scale" name="scale">
+          <md-select v-model="musicService.scale" class='scale' name="scale">
             <md-option
               v-for="(scale, name) in musicService.scales"
               :key="name"
@@ -42,7 +43,8 @@
             >{{ name }}</md-option>
           </md-select>
         </md-field>
-
+      </div>
+      <div class="col-md-2">
         <input v-model.number="musicService.transport.bpm.value" type="number" min="60" max="260">
       </div>
     </div>
