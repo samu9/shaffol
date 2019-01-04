@@ -21,9 +21,7 @@
     font-size:20px;
     transition: 0.5s;
 }
-.main-panel .controls button:hover{
-    /* box-shadow: inset 0px 4px 1px royalblue, inset 0px -4px 1px royalblue; */
-}
+
 .main-panel .controls button:active{
     background: #ffffff2d;
 }
