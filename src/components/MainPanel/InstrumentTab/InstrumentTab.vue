@@ -1,11 +1,21 @@
 <template>
   <div class="instrument-tab">
     <div class="name-container">
-      <div v-on:click="openNoteMatrix()" v-if="noteMatrixState == 'preview'" class="circle">
+      <div
+        @click="showModal"
+        v-on:click="openNoteMatrix()"
+        v-if="noteMatrixState == 'preview'"
+        class="circle"
+      >
         <h1>{{name | capitalize }}</h1>
       </div>
       <NoteMatrix v-if="name != 'drums'" :instrument="instrument" :state="noteMatrixState"/>
       <font-awesome-icon v-else class="drum-icon" icon="drum"/>
+      <b-modal ref="myModalRef" hide-footer title="Note Matrix" hide-header>
+        <h5 class="modal-title">{{name|capitalize}} Note Matrix</h5>
+        <NoteMatrix class="modal-nm" :instrument="instrument" :state="noteMatrixState"/>
+        <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-btn>
+      </b-modal>
     </div>
     <div class="row">
       <div class="col-md-3">
@@ -54,7 +64,11 @@
           </md-button>
         </div>
         <div class="row-md-3 cleardiv">
-          <md-button v-on:click="clearInstrument" onclick="this.blur()" class="md-raised clear">
+          <md-button
+            v-on:click="instrument.clearPattern()"
+            onclick="this.blur()"
+            class="md-raised clear"
+          >
             <font-awesome-icon icon="trash-alt"/>
           </md-button>
         </div>
@@ -91,25 +105,27 @@ export default {
   components: {
     NoteMatrix,
     SynthControls,
-    DrumsControls,
+    DrumsControls
   },
   methods: {
     mute: function() {
       this.instrument.volumeControl.mute = !this.instrument.volumeControl.mute;
       console.log(this.instrument.volumeControl.volume.value);
     },
-    solo() {
+    solo: function() {
       this.instrument.soloControl.solo = !this.instrument.soloControl.solo;
       this.soloProva = this.instrument.soloControl.solo;
     },
-    shuffle: function() {
-      this.instrument.shufflePattern();
-    },
-    clearInstrument: function() {
-      console.log("clear inst");
+    showModal: function() {
+      if (this.name != "drums") {
+        this.$refs.myModalRef.show();
+      }
     },
     openNoteMatrix: function() {
-      this.noteMatrixState = "open";
+      /*this.noteMatrixState = "open";*/
+    },
+    hideModal: function() {
+      this.$refs.myModalRef.hide();
     }
   },
   created() {

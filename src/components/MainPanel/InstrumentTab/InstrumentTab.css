@@ -16,6 +16,7 @@
     border-right: 0.15vw solid royalblue;
     width: 25%;
     height:100%;
+    text-align:center;
 }
 .circle {
     position: absolute;
@@ -37,6 +38,28 @@
     display: table-cell;
     font-family:'Courier';
 }
+.note-matrix.modal-nm{
+    max-height: 540px;
+}
+.name-container .modal-title{
+    
+}
+
+h5.modal-title{
+    color:royalblue;
+    margin-bottom:1rem;
+    text-align: center;
+}
+.modal-nm .time-slot{
+    background: royalblue;
+}
+.modal-dialog.modal-md{
+    max-width:600px;
+}
+.name-container .modal-content{
+    background-color: #020d46;
+}
+
 .volume-slider{
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */;
@@ -97,6 +120,7 @@
 .col-md-3.last{
     padding-left:0px;
 }
+
 .md-button.shuffle{
     margin-left: auto;
     font-size: 1.5vw;

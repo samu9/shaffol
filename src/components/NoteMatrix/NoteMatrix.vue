@@ -58,6 +58,7 @@ export default {
         let removeIndex = this.instrument.pattern[time].indexOf(parseInt(note));
         this.instrument.pattern[time].splice(removeIndex, 1);
       }
+      this.instrument.updatePattern();
     },
     clearGrid() {
       for (let t in this.noteGrid) {

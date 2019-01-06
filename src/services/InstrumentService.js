@@ -68,4 +68,13 @@ export default class InstrumentService {
             this.synth.voices[v].oscillator.type = oscillator;
         }
     }
+    clearPattern() {
+        for (let t in this.pattern) {
+            this.pattern[t] = [];
+        }
+        this.EventBus.$emit('shuffled', this.pattern);
+    }
+    updatePattern() {
+        this.EventBus.$emit('shuffled', this.pattern);
+    }
 }

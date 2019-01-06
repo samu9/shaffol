@@ -12,7 +12,10 @@
 .main-panel .controls,.notes{
     margin: 10px auto;
 }
-
+.controls .start{
+    padding-left:0;
+    padding-right:0;
+}
 .main-panel .controls button{
     border: 3px solid;
     height:65px;
@@ -22,13 +25,9 @@
     transition: 0.5s;
 }
 
-.main-panel .controls button:active{
-    background: #ffffff2d;
+.controls .md-button{
+    min-width: 65px;
 }
-.main-panel .controls button:focus{
-    outline: 0;
-}
-
 .main-panel .controls > h3{
     margin: 0px;
     padding: 0px;

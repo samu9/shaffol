@@ -9,15 +9,15 @@
     />
 
     <div class="row controls">
-      <div class="col-md-3">
-        <button v-on:click="musicService.toggleStartPause();" onclick="this.blur()">
+      <div class="col-md-3 start">
+        <md-button v-on:click="musicService.toggleStartPause();" onclick="this.blur()">
           <font-awesome-icon
             v-bind:icon="musicService.transport.state == 'started'?  'pause' : 'play'"
           />
-        </button>
-        <button v-on:click="musicService.stop();" onclick="this.blur()">
+        </md-button>
+        <md-button v-on:click="musicService.stop();" onclick="this.blur()">
           <font-awesome-icon icon="stop"/>
-        </button>
+        </md-button>
       </div>
       <div class="col-md-3">
         <md-field>
@@ -35,7 +35,7 @@
       <div class="col-md-3">
         <md-field>
           <label for="scale">Scale</label>
-          <md-select v-model="musicService.scale" class='scale' name="scale">
+          <md-select v-model="musicService.scale" class="scale" name="scale">
             <md-option
               v-for="(scale, name) in musicService.scales"
               :key="name"
