@@ -1,27 +1,21 @@
-.instrument-controls{
-    display: flex;
-}
+
 .instrument-tab{
     display:flex;
     width: 100%;
     border: 0.15vw solid royalblue;
     margin: 1% auto;
-    flex-wrap: nowrap;
     height:9.9vw;
-    align-items: center;
 }
 
 .name-container{
     position: relative;
     border-right: 0.15vw solid royalblue;
     width: 25%;
-    height:100%;
     text-align:center;
 }
+
 .circle {
     position: absolute;
-    top: 0%;
-    left: 0%;
     height: 100%;
     width: 100%;
     display: table;
@@ -29,44 +23,52 @@
     cursor: pointer;
 
 }
+
 .circle h1 {
-    color: #ffffff;
     text-shadow: 0.1em 0.1em 0em #0000003d;
     font-size:2vw;
     vertical-align: middle;
-    text-align:center; 
     display: table-cell;
     font-family:'Courier';
 }
+
 .note-matrix.modal-nm{
     max-height: 540px;
-}
-.name-container .modal-title{
-    
 }
 
 h5.modal-title{
     color:royalblue;
     margin-bottom:1rem;
-    text-align: center;
 }
+
 .modal-nm .time-slot{
     background: royalblue;
 }
+
 .modal-dialog.modal-md{
     max-width:600px;
 }
+
 .name-container .modal-content{
     background-color: #020d46;
+}
+
+.col-md-4 svg{
+   margin-left:0.9vw;
+   color: royalblue;
 }
 
 .volume-slider{
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */;
-    height: 90%;
+    height: 100px;
     width:20%;
-    margin: 0.5em;
+    margin: 0;
+    padding-left:1.2vw;
+    padding-bottom:0;
+    padding-top:0;
 }
+
 .volume-slider::-moz-range-thumb, .volume-slider::-webkit-slider-thumb {
     width: 1em;
     height: 1em;
@@ -75,17 +77,13 @@ h5.modal-title{
     background: royalblue;
     cursor: pointer;
   }
-.btn-container{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-
-}
 
 .btn-container .md-button{
-    border: 2px solid ;
+    border: 2px solid;
     transition: 0.5s;
-    font-family: sans-serif;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+    font-weight: 600;
     width: 4vw; 
     margin-left: auto;
 }
@@ -124,11 +122,9 @@ h5.modal-title{
 .md-button.shuffle{
     margin-left: auto;
     font-size: 1.5vw;
+    border: 1px solid royalblue;
 }
 
-.shuffle button:active{
-    background: #ffffff2d;
-}
 .offset{
     min-height: 48px;
 }
@@ -138,18 +134,14 @@ h5.modal-title{
     flex-direction:row-reverse;
 }
 .md-button.clear{
-    min-width: 50px;
+    min-width: 40px;
     font-size: 1.2vw;
-    width:2vw;
+    width:1.5vw;
     background: inherit;
     color: red;
     border:1px solid red;
 }
 
-
-.instrument-settings{
-    display: flex;
-}
 .drum-icon{
     font-size: 5em;
     color: #ffffff2d;

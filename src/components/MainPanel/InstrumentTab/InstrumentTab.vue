@@ -21,6 +21,7 @@
       <div class="col-md-3">
         <div class="row">
           <div class="col-md-4">
+            <font-awesome-icon icon="volume-up"/>
             <input
               v-model="instrument.volumeControl.volume.value"
               type="range"
@@ -29,6 +30,7 @@
               class="volume-slider"
               orient="vertical"
             >
+            <font-awesome-icon icon="volume-down"/>
           </div>
           <div class="col-md-7">
             <div class="btn-container">
@@ -53,16 +55,6 @@
         <DrumsControls v-else :instrument="instrument"/>
       </div>
       <div class="col-md-3 last">
-        <div class="row-md-3 offset"></div>
-        <div class="row-md-3">
-          <md-button
-            v-on:click="instrument.shufflePattern()"
-            onclick="this.blur()"
-            class="md-raised shuffle"
-          >
-            <font-awesome-icon icon="random"/>
-          </md-button>
-        </div>
         <div class="row-md-3 cleardiv">
           <md-button
             v-on:click="instrument.clearPattern()"
@@ -71,6 +63,16 @@
           >
             <font-awesome-icon icon="trash-alt"/>
           </md-button>
+        </div>
+        <div class="row-md-3">
+          <md-button
+            v-on:click="instrument.shufflePattern()"
+            onclick="this.blur()"
+            class="md-raised shuffle"
+          >
+            <font-awesome-icon icon="random"/>
+          </md-button>
+          <div class="row-md-3 offset"></div>
         </div>
       </div>
     </div>
@@ -99,7 +101,8 @@ export default {
   data() {
     return {
       noteMatrixState: "preview",
-      soloProva: false
+      soloProva: false,
+      slider: 45
     };
   },
   components: {

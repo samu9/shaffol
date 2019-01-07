@@ -12,11 +12,11 @@ import 'vue-material/dist/vue-material.min.css'
 /*import 'vue-material/dist/theme/default.css'*/
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, faVolumeDown, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import MusicService from './services/MusicService';
 
-library.add(faPlay,faStop,faRandom, faPause, faTrashAlt, faDrum, faTimesCircle)
+library.add(faPlay,faStop,faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, faVolumeDown, faVolumeUp)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
