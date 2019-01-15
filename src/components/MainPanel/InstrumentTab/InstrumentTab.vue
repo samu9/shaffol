@@ -13,8 +13,8 @@
       <font-awesome-icon v-else class="drum-icon" icon="drum"/>
       <b-modal ref="myModalRef" hide-footer title="Note Matrix" hide-header>
         <h5 class="modal-title">{{name|capitalize}} Note Matrix</h5>
-        <NoteMatrix class="modal-nm" :instrument="instrument" :state="noteMatrixState"/>
-        <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-btn>
+        <NoteMatrix v-if="name != 'drums'" class="modal-nm" :instrument="instrument" :state="noteMatrixState"/>
+        <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close</b-btn>
       </b-modal>
     </div>
     <div class="row">
@@ -41,7 +41,7 @@
                 class="md-raised mute"
               >Mute</md-button>
               <md-button
-                v-bind:class="{active: soloProva}"
+                v-bind:class="{active: soloInst}"
                 v-on:click="solo"
                 onclick="this.blur()"
                 class="md-raised solo"
@@ -51,8 +51,8 @@
         </div>
       </div>
       <div class="col-md-6 effects">
-        <SynthControls v-if="name != 'drums'" :instrument="instrument"/>
-        <DrumsControls v-else :instrument="instrument"/>
+        <SynthControls v-if="name != 'drums'" :instrument="instrument" :musicService="musicService"/>
+        <DrumsControls v-else :instrument="instrument" :musicService="musicService"/>
       </div>
       <div class="col-md-3 last">
         <div class="row-md-3 cleardiv">
@@ -101,7 +101,7 @@ export default {
   data() {
     return {
       noteMatrixState: "preview",
-      soloProva: false,
+      soloInst: false,
       slider: 45
     };
   },

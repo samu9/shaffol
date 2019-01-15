@@ -42,7 +42,7 @@ h5.modal-title{
 }
 
 .modal-nm .time-slot{
-    background: royalblue;
+    background-color: #000830;
 }
 
 .modal-dialog.modal-md{
@@ -50,7 +50,7 @@ h5.modal-title{
 }
 
 .name-container .modal-content{
-    background-color: #020d46;
+    background-color: #000830;
 }
 
 .col-md-4 svg{

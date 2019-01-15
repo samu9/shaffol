@@ -14,9 +14,9 @@ export default class MusicService {
     measure = 16;
     transport = Tone.Transport;
 
-    constructor(tonic, scale, bpm) {
-        this.tonic = tonic;
-        this.tonicIndex = this.notes.indexOf(tonic);
+    constructor(key, scale, bpm) {
+        this.key = key;
+        this.keyIndex = this.notes.indexOf(key);
         this.scale = scale;
         this.transport.bpm.value = bpm;
         this.transport.scheduleRepeat(
@@ -29,15 +29,15 @@ export default class MusicService {
         this.timeIndex = (this.timeIndex + 1) % this.measure;
     }
 
-    changeTonic(newTonic) {
-        this.tonicIndex = this.notes.indexOf(newTonic);
-        this.tonic = newTonic;
+    changeKey(newKey) {
+        this.keyIndex = this.notes.indexOf(newKey);
+        this.key = newKey;
     }
-    randomTonic(){
+    randomKey(){
         let randIndex = Math.floor(Math.random() * this.notes.length);
-        this.tonicIndex = randIndex;
-        this.tonic = this.notes[this.tonicIndex];
-        this.tonic = newTonic;
+        this.keyIndex = randIndex;
+        this.key = this.notes[this.keyIndex];
+        this.key = newKey;
     }
     changeScale(newScale) {
         // let keys = Object.keys(this.scales);
@@ -52,7 +52,7 @@ export default class MusicService {
         if(index.length > 0) {
             for(let i of index){
                 let octaves = octave + Math.floor(i / this.scales[this.scale].length);
-                let noteIndex = this.scales[this.scale][i % this.scales[this.scale].length] + this.tonicIndex;
+                let noteIndex = this.scales[this.scale][i % this.scales[this.scale].length] + this.keyIndex;
                 let newOctave = octaves + Math.floor(noteIndex / this.notes.length);
                 notes.push(this.notes[noteIndex % this.notes.length] + newOctave);
             }

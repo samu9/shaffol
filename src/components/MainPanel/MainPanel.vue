@@ -21,25 +21,24 @@
       </div>
       <div class="col-md-3">
         <md-field>
-          <label for="tonic">Tonic</label>
-          <md-select v-model="musicService.tonic" name="tonic">
+          <label for="key">Key</label>
+          <md-select v-model="musicService.key" @md-selected="musicService.changeKey(musicService.key)" name="key" md-dense>
             <md-option
-              v-for="(tonic,i) in musicService.notes"
+              v-for="(key,i) in musicService.notes"
               :key="i"
-              v-on:click="musicService.changeTonic(tonic)"
-              v-bind:value="tonic"
-            >{{ tonic }}</md-option>
+              :value="key"
+            >{{ key }}</md-option>
           </md-select>
         </md-field>
       </div>
       <div class="col-md-3">
         <md-field>
           <label for="scale">Scale</label>
-          <md-select v-model="musicService.scale" class="scale" name="scale">
+          <md-select v-model="musicService.scale" class="scale" name="scale" md-dense>
             <md-option
               v-for="(scale, name) in musicService.scales"
               :key="name"
-              v-bind:value="name"
+              :value="name"
             >{{ name }}</md-option>
           </md-select>
         </md-field>
