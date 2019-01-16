@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './main.css'
 
-import { MdField, MdMenu, MdList, MdButton} from 'vue-material/dist/components'
+import { MdField, MdMenu, MdList, MdButton, MdTooltip } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 /*import 'vue-material/dist/theme/default.css'*/
 
@@ -16,7 +16,7 @@ import { faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, f
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import MusicService from './services/MusicService';
 
-library.add(faPlay,faStop,faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, faVolumeDown, faVolumeUp)
+library.add(faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, faVolumeDown, faVolumeUp)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -24,9 +24,11 @@ Vue.use(MdField)
 Vue.use(MdMenu)
 Vue.use(MdList)
 Vue.use(MdButton)
+Vue.use(MdTooltip)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
-export var musicService = new MusicService("C", "Pentatonic Major", 180);
+
+export var musicService = new MusicService("A", "Pentatonic Minor", 180);
 
 new Vue({
     el: '#app',
@@ -40,10 +42,10 @@ window.addEventListener('keydown', function (e) {
         e.preventDefault();
         musicService.toggleStartPause();
     }
-    if (e.keyCode == 13) {
-        e.preventDefault();
-        musicService.stop();
-    }
+    // if (e.keyCode == 13) {
+    //     e.preventDefault();
+    //     musicService.stop();
+    // }
 })
 
 

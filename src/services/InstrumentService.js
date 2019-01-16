@@ -5,11 +5,12 @@ import Vue from 'vue';
 export default class InstrumentService {
     synth = new Tone.PolySynth(2, Tone.Synth);
     volumeControl = new Tone.Volume();
+    effectsVolumeControl = new Tone.Volume();
     soloControl = new Tone.Solo();
     timeIndex = 0;
-    reverb = new Tone.Reverb();
     pattern = [];
     EventBus = new Vue();
+    activeEffect = "none"
 
     constructor(name, musicService, gridDim, octave, oscillator = 'triangle') {
         this.synth.chain(this.volumeControl, this.soloControl, Tone.Master);
@@ -31,6 +32,8 @@ export default class InstrumentService {
         for (let t = 0; t < gridDim; t++) {
             this.pattern[t] = [];
         }
+        // building effects
+        this.buildEffects();
 
         // starting the repeat function
         this.musicService.transport.scheduleRepeat(time => {
@@ -63,11 +66,6 @@ export default class InstrumentService {
         }
         this.EventBus.$emit('shuffled', this.pattern);
     }
-    changeOscillator(oscillator) {
-        for (let v in this.synth.voices) {
-            this.synth.voices[v].oscillator.type = oscillator;
-        }
-    }
     clearPattern() {
         for (let t in this.pattern) {
             this.pattern[t] = [];
@@ -77,4 +75,53 @@ export default class InstrumentService {
     updatePattern() {
         this.EventBus.$emit('shuffled', this.pattern);
     }
+    mute() {
+        this.volumeControl.mute = !this.volumeControl.mute;
+        this.effectsVolumeControl.mute = !this.effectsVolumeControl.mute;
+    }
+    changeOscillator(oscillator) {
+        for (let v in this.synth.voices) {
+            this.synth.voices[v].oscillator.type = oscillator;
+        }
+    }
+    buildEffects() {
+        // used to rebuild effects when bpm is changed to synchronize effects to the new bpm
+        // every instrument is switched to none, every effects is rebuilt and the swtich back to the
+        // previous effect
+        let eff = this.activeEffect;
+        this.changeEffect("none");
+        delete this.effects;
+        this.effects = {
+            none: null,
+            delay: new Tone.FeedbackDelay(
+                {
+                    "delayTime": "4n",
+                    "feedback": 0.3,
+                    "wet": 1
+                }),
+            reverb: new Tone.Reverb(
+                {
+                "wet": 1,
+                "decay": 3,
+                "preDelay": 1
+                }),
+            tremolo: new Tone.Vibrato(),
+        }
+        this.changeEffect(eff);
+    }
+    changeEffect(effect) {
+        if (effect == this.activeEffect) return;
+        if (this.activeEffect != "none") {
+            this.effects[this.activeEffect].disconnect(this.synth);
+        }
+        this.activeEffect = effect;
+        if (effect == "reverb") {
+            this.effects[effect].generate();
+        }
+        if (effect != "none") {
+            this.effects[effect].chain(this.volumeControl, this.soloControl);
+            this.synth.connect(this.effects[effect]);
+        }
+    }
+
 }

@@ -19,15 +19,16 @@
           <font-awesome-icon icon="stop"/>
         </md-button>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <md-field>
           <label for="key">Key</label>
-          <md-select v-model="musicService.key" @md-selected="musicService.changeKey(musicService.key)" name="key" md-dense>
-            <md-option
-              v-for="(key,i) in musicService.notes"
-              :key="i"
-              :value="key"
-            >{{ key }}</md-option>
+          <md-select
+            v-model="musicService.key"
+            @md-selected="musicService.changeKey(musicService.key)"
+            name="key"
+            md-dense
+          >
+            <md-option v-for="(key,i) in musicService.notes" :key="i" :value="key">{{ key }}</md-option>
           </md-select>
         </md-field>
       </div>
@@ -44,7 +45,16 @@
         </md-field>
       </div>
       <div class="col-md-2">
-        <input v-model.number="musicService.transport.bpm.value" type="number" min="60" max="260">
+        <md-field>
+          <label>BPM</label>
+          <md-input v-model.number="bpm" @change="changeBpm(bpm)" @submit="changeBpm(bpm)"></md-input>
+        </md-field>
+      </div>
+      <div class="col-md-2">
+        <md-button v-on:click="shuffleAll()" onclick="this.blur()" class="md-raised shuffle">
+          <font-awesome-icon icon="random"/>
+          <md-tooltip>Shuffle ALL</md-tooltip>
+        </md-button>
       </div>
     </div>
   </div>
@@ -63,15 +73,34 @@ export default {
     return {
       instruments: {
         lead: new InstrumentService("lead", musicService, 16, 3, "triangle"),
-        // lead2: new InstrumentService("lead2", musicService, 8, 4, "sine"),
         bass: new InstrumentService("bass", musicService, 4, 2, "triangle"),
         drums: new DrumsService("drums", musicService)
       },
-      musicService: musicService
+      musicService: musicService,
+      bpm: musicService.transport.bpm.value
     };
   },
   components: {
     InstrumentTab
+  },
+  created() {
+    this.musicService.EventBus.$on("bpm", bpm => {
+      this.bpm = bpm;
+    });
+  },
+  methods: {
+    changeBpm: function() {
+      this.musicService.changeBpm(this.bpm);
+      this.bpm = Math.ceil(musicService.transport.bpm.value);
+    },
+    shuffleAll: function() {
+      for (let i in this.instruments) {
+        this.instruments[i].shufflePattern();
+      }
+      this.musicService.randomKey();
+      this.musicService.randomScale();
+      this.musicService.randomBpm();
+    }
   }
 };
 </script>

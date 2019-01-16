@@ -28,7 +28,6 @@ import InstrumentService from "../../services/InstrumentService";
 export default {
   props: {
     instrument: Object,
-    state: String
   },
   data() {
     return {

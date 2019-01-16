@@ -12,9 +12,8 @@
           md-dense
         >
           <md-option
-            v-for="inst in soundwave"
+            v-for="inst in soundwaves"
             v-bind:key="inst"
-            v-on:click="instrument.changeOscillator(inst)"
             v-bind:value="inst"
           >{{ inst | capitalize }}</md-option>
         </md-select>
@@ -23,8 +22,13 @@
     <div class="col-md-6">
       <md-field>
         <label for="effect">Effect</label>
-        <md-select v-model="selectedEffect" name="effect" md-dense>
-          <md-option v-for="e in effects" v-bind:key="e.value" v-bind:value="e.value">{{ e.value }}</md-option>
+        <md-select
+          v-model="selectedEffect"
+          @md-selected="instrument.changeEffect(selectedEffect)"
+          name="effect"
+          md-dense
+        >
+          <md-option v-for="eff in effects" v-bind:key="eff" v-bind:value="eff">{{ eff | capitalize }}</md-option>
         </md-select>
       </md-field>
     </div>
@@ -32,6 +36,7 @@
 </template>
 
 <script>
+import Tone from 'tone'
 export default {
   props: {
     name: String,
@@ -47,18 +52,21 @@ export default {
   },
   data() {
     return {
-      soundwave: ["sine", "sawtooth", "triangle"],
-      effects: ["Reverb", "Distortion", "Delay"],
-      selectedEffect: "Delay",
-      noteMatrixState: "preview"
+      soundwaves: ["sine", "sawtooth", "triangle"],
+      effects: Object.keys(this.instrument.effects),
+      selectedEffect: "none",
     };
   },
   created() {
+    
     this.selectedSoundwave = this.instrument.synth.voices[0].oscillator.type;
+    this.musicService.EventBus.$on("bpm", bpm => {
+      this.instrument.buildEffects();
+    });
   },
   methods: {
-    prova: function() {
-      console.log(0);
+    changeEffect(newEffect) {
+      console.log(newEffect);
     }
   }
 };

@@ -4,17 +4,16 @@
       <div
         @click="showModal"
         v-on:click="openNoteMatrix()"
-        v-if="noteMatrixState == 'preview'"
         class="circle"
       >
         <h1>{{name | capitalize }}</h1>
       </div>
-      <NoteMatrix v-if="name != 'drums'" :instrument="instrument" :state="noteMatrixState"/>
+      <NoteMatrix v-if="name != 'drums'" :instrument="instrument"/>
       <font-awesome-icon v-else class="drum-icon" icon="drum"/>
       <b-modal ref="myModalRef" hide-footer title="Note Matrix" hide-header>
         <h5 class="modal-title">{{name|capitalize}} Note Matrix</h5>
-        <NoteMatrix v-if="name != 'drums'" class="modal-nm" :instrument="instrument" :state="noteMatrixState"/>
-        <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close</b-btn>
+        <NoteMatrix v-if="name != 'drums'" class="modal-nm" :instrument="instrument"/>
+        <b-btn class="mt-3" variant="outline-primary" block @click="hideModal">Close</b-btn>
       </b-modal>
     </div>
     <div class="row">
@@ -100,7 +99,6 @@ export default {
   },
   data() {
     return {
-      noteMatrixState: "preview",
       soloInst: false,
       slider: 45
     };
@@ -112,12 +110,11 @@ export default {
   },
   methods: {
     mute: function() {
-      this.instrument.volumeControl.mute = !this.instrument.volumeControl.mute;
-      console.log(this.instrument.volumeControl.volume.value);
+      this.instrument.mute()
     },
     solo: function() {
       this.instrument.soloControl.solo = !this.instrument.soloControl.solo;
-      this.soloProva = this.instrument.soloControl.solo;
+      this.soloInst = this.instrument.soloControl.solo;
     },
     showModal: function() {
       if (this.name != "drums") {
