@@ -9,6 +9,8 @@ export default class MusicService {
         "Pentatonic Minor": [0, 3, 5, 7, 8],
         "Pentatonic Major": [0, 2, 4, 7, 9],
     };
+    minBpm = 60;
+    maxBpm = 220;
     time = 0;
     timeIndex = -1;
     measure = 16;
@@ -24,7 +26,6 @@ export default class MusicService {
             (time) => {
                 this.repeat(time);
             }, "8n");
-        // this.transport.start();
     }
     repeat(time) {
         this.timeIndex = (this.timeIndex + 1) % this.measure;
@@ -51,17 +52,16 @@ export default class MusicService {
         this.scale = newScale;
     }
     changeBpm(bpm) {
-        if (bpm < 60) {
-            bpm = 60;
-        } else if (bpm > 220) {
-            bpm = 220;
+        if (bpm < this.minBpm) {
+            bpm = this.minBpm;
+        } else if (bpm > this.maxBpm) {
+            bpm = this.maxBpm;
         }
         this.transport.bpm.value = bpm;
         this.EventBus.$emit('bpm', bpm);
     }
     randomBpm(){
-        let newBpm = Math.floor(Math.random() * 220);
-        console.log(newBpm);
+        let newBpm = Math.round(Math.random() * (this.maxBpm - this.minBpm) + this.minBpm); 
         this.changeBpm(newBpm);
     }
     getNote(index, octave) {
@@ -77,6 +77,9 @@ export default class MusicService {
         return notes;
     }
     toggleStartPause() {
+        if(this.transport.state == "stopped"){
+            this.EventBus.$emit('stop', null);
+        }
         if (this.transport.state == "started") {
             this.transport.pause();
         }
@@ -87,5 +90,6 @@ export default class MusicService {
     stop() {
         this.timeIndex = -1;
         this.transport.stop();
+        this.EventBus.$emit('stop', null);
     }
 }

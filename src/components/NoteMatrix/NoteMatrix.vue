@@ -1,6 +1,5 @@
 <template>
   <div v-if="open" class="note-matrix">
-    <!-- <font-awesome-icon v-if="state == 'open'" v-on:click="open = false" class="close-button" icon="times-circle"/> -->
     <div
       class="time-slot"
       v-for="(time, timeKey) in noteGrid"
@@ -43,7 +42,7 @@ export default {
       }
       Vue.set(this.noteGrid, t, obj);
     }
-    this.instrument.EventBus.$on("shuffled", pattern => {
+    this.instrument.EventBus.$on("updatedPattern", pattern => {
       this.updateGrid();
     });
     this.instrument.shufflePattern();
@@ -52,12 +51,13 @@ export default {
     toggleNote: function(time, note) {
       this.noteGrid[time][note] = !this.noteGrid[time][note];
       if (this.noteGrid[time][note]) {
-        this.instrument.pattern[time].push(parseInt(note));
+        this.instrument.patterns[this.instrument.currentPattern][time].push(parseInt(note));
+        this.instrument.playNote([note]);
       } else {
-        let removeIndex = this.instrument.pattern[time].indexOf(parseInt(note));
-        this.instrument.pattern[time].splice(removeIndex, 1);
+        let removeIndex = this.instrument.patterns[this.instrument.currentPattern][time].indexOf(parseInt(note));
+        this.instrument.patterns[this.instrument.currentPattern][time].splice(removeIndex, 1);
       }
-      this.instrument.updatePattern();
+      this.instrument.updatedPattern();
     },
     clearGrid() {
       for (let t in this.noteGrid) {
@@ -68,17 +68,12 @@ export default {
     },
     updateGrid() {
       this.clearGrid();
-      for (let t in this.instrument.pattern) {
-        for (let n of this.instrument.pattern[t]) {
+      for (let t in this.instrument.patterns[this.instrument.currentPattern]) {
+        for (let n of this.instrument.patterns[this.instrument.currentPattern][t]) {
           this.noteGrid[t][n] = true;
         }
       }
     }
-    // getIndex: function(note) {
-    //   let noteLetter = note[0];
-    //   let noteOctave = note[1];
-    //   console.log(note[0]);
-    // }
   }
 };
 </script>

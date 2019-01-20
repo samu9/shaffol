@@ -6,8 +6,6 @@
         <md-select
           v-model="selectedSoundwave"
           @md-selected="instrument.changeOscillator(selectedSoundwave)"
-          @md-opened="musicService.toggleStartPause()"
-          @md-closed="musicService.toggleStartPause()"
           name="sound"
           md-dense
         >
@@ -28,7 +26,11 @@
           name="effect"
           md-dense
         >
-          <md-option v-for="eff in effects" v-bind:key="eff" v-bind:value="eff">{{ eff | capitalize }}</md-option>
+          <md-option
+            v-for="eff in effects"
+            v-bind:key="eff"
+            v-bind:value="eff"
+          >{{ eff | capitalize }}</md-option>
         </md-select>
       </md-field>
     </div>
@@ -57,17 +59,24 @@ export default {
       selectedEffect: "none",
     };
   },
-  created() {
-    
+  created() {  
     this.selectedSoundwave = this.instrument.synth.voices[0].oscillator.type;
     this.musicService.EventBus.$on("bpm", bpm => {
       this.instrument.buildEffects();
     });
   },
   methods: {
-    changeEffect(newEffect) {
-      console.log(newEffect);
-    }
+    openSoundSelect: function(){
+      if(this.musicService.transport.state == "started"){
+        this.musicService.toggleStartPause()
+      }
+    },
+    closeSoundSelect: function(){
+      if(this.musicService.transport.state == "paused"){
+        this.musicService.toggleStartPause()
+      }
+    },
+
   }
 };
 </script>

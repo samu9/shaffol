@@ -7,16 +7,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './main.css'
 
-import { MdField, MdMenu, MdList, MdButton, MdTooltip } from 'vue-material/dist/components'
+import { MdField, MdMenu, MdList, MdButton, MdTooltip, MdChips } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
-/*import 'vue-material/dist/theme/default.css'*/
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, faVolumeDown, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, faVolumeDown, faVolumeUp, faPlus, faEraser, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import MusicService from './services/MusicService';
 
-library.add(faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, faVolumeDown, faVolumeUp)
+library.add(faPlay, faStop, faRandom, faPause, faTrashAlt, faDrum, faTimesCircle, faVolumeDown, faVolumeUp, faPlus, faEraser, faMinus)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -25,6 +24,7 @@ Vue.use(MdMenu)
 Vue.use(MdList)
 Vue.use(MdButton)
 Vue.use(MdTooltip)
+Vue.use(MdChips)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
