@@ -8,8 +8,8 @@
       :musicService="musicService"
     />
 
-    <div class="row controls">
-      <div class="col-md-3 start">
+    <div class="row controls" style= "margin: 10px auto;">
+      <div style="padding-left:0; padding-right:0;" class="col-md-3">
         <md-button
           class="md-raised"
           v-on:click="musicService.toggleStartPause();"
@@ -56,7 +56,14 @@
         </md-field>
       </div>
       <div class="col-md-2">
-        <md-button v-on:click="shuffleAll()" onclick="this.blur()" class="md-raised shuffle" data-toggle="tooltip" data-placement="bottom" title="Shuffle ALL">
+        <md-button
+          v-on:click="shuffleAll()"
+          onclick="this.blur()"
+          class="md-raised shuffle"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Shuffle ALL"
+        >
           <font-awesome-icon icon="random" size="lg"/>
         </md-button>
       </div>

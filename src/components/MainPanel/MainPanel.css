@@ -9,13 +9,6 @@
     flex-direction: column;
 }
 
-.main-panel .controls,.notes{
-    margin: 10px auto;
-}
-.controls .start{
-    padding-left:0;
-    padding-right:0;
-}
 .main-panel .controls button{
     border: 3px solid;
     height:65px;

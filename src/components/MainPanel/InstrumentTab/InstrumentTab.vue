@@ -82,8 +82,8 @@
       </li>
     </ul>
 
-    <div class="row">
-      <div class="col-md-1 volume-controls">
+    <div style = "width:100%; align-items:center; margin-left:0" class="row">
+      <div style = "padding-left: 0" class="col-md-1 volume-controls">
         <font-awesome-icon icon="volume-up"/>
         <input
           v-model="instrument.volumeControl.volume.value"
@@ -120,8 +120,9 @@
         />
         <DrumsControls v-else :instrument="instrument" :musicService="musicService"/>
       </div>
-      <div class="col-md-2 right-side">
+      <div  class="col-md-2 right-side">
         <md-button
+          style ="margin-left:0;"
           v-on:click="instrument.clearAllPatterns()"
           onclick="this.blur()"
           class="md-raised shuffle"

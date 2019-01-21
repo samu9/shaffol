@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div style = "width:100%;" class="row">
     <div class="col-md-6">
       <md-field>
         <label for="sound">Sound</label>
