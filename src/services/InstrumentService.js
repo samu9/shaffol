@@ -7,7 +7,7 @@ export default class InstrumentService {
     soloControl = new Tone.Solo();
     timeIndex = 0;
     patterns = [];
-    totalPatterns = 2;
+    totalPatterns = 1;
     currentPattern = 0;
     restarted = true;
     EventBus = new Vue();
