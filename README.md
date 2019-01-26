@@ -1,6 +1,12 @@
 # shaffol
 
-> A Vue.js project
+> Interactive music generator made with [Vue.js](https://vuejs.org/) and [Tone.js](https://tonejs.github.io/)
+
+## How it works
+Create your own original music, using a "note matrix" for each instrument and some drum patterns. You can choose a key and a scale, and every note in the matrix will follow those settings, so everything will sound good.
+
+## Shuffle!
+If you're not satified of the results, just press the shuffle button and change everything!
 
 ## Build Setup
 
@@ -17,5 +23,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
