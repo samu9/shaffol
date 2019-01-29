@@ -3,10 +3,6 @@ import BootstrapVue from "bootstrap-vue"
 import App from './App'
 import Tone from 'tone'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './main.css'
-
 import { MdField, MdMenu, MdList, MdButton, MdTooltip, MdChips } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 

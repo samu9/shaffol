@@ -25,6 +25,10 @@ export default {
 </script>
 
 <style>
+@import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+@import url('../node_modules/bootstrap-vue/dist/bootstrap-vue.css');
+@import url('./main.css');
+
 #main {
   display: flex;
   flex-direction: column;
