@@ -164,3 +164,6 @@ h5.modal-title{
     width: 100%;
     z-index: 0;
 }
+.md-menu-content-container{
+    background: #2d3455;
+}
