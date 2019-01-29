@@ -85,12 +85,6 @@ export default class SynthService extends InstrumentService{
             this.clearPattern(p);
         }
     }
-    addPattern(){
-        super.addPattern();
-        if(this.totalPatterns <= 4){
-            this.initializePattern(this.totalPatterns-1);
-        }
-    }
     changeOscillator(oscillator) {
         this.blocked = true;
         for (let v in this.synth.voices) {

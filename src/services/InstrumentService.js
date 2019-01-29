@@ -35,13 +35,17 @@ export default class InstrumentService {
         this.updatedPattern();
     }
     addPattern() {
+        console.log(this.patterns[this.currentPattern]);
+
         if (this.musicService.transport.state == "started") return;
         if (this.totalPatterns < 4) {
             this.totalPatterns++;
+            this.selectPattern(this.totalPatterns - 1);
+            this.initializePattern(this.totalPatterns-1);
         }
-        this.selectPattern(this.totalPatterns - 1)
     }
     deletePattern(i) {
+        if (this.musicService.transport.state == "started") return;
         if (this.totalPatterns == 1) return;
         this.patterns.splice(i, 1);
         this.totalPatterns--;

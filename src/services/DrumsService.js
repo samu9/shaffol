@@ -66,10 +66,6 @@ export default class DrumsService extends InstrumentService {
         this.patterns[i] = newPattern;
         this.updatedPattern();
     }
-    addPattern(){
-        super.addPattern();
-        this.initializePattern(this.totalPatterns - 1);
-    }
     changeDrumPattern(pattern){
         this.patterns[this.currentPattern] = pattern;
         this.updatedPattern();
